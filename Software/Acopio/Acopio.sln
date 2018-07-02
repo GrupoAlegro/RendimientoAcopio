@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rentabilidad", "Rentabilidad\Rentabilidad.csproj", "{89BB4D95-5B47-442E-BA76-F249D87E46D0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Acopio", "Rentabilidad\Acopio.csproj", "{89BB4D95-5B47-442E-BA76-F249D87E46D0}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CapaDeDatos", "CapaDeDatos\CapaDeDatos.csproj", "{99F0CD27-5B9A-47D9-BB8A-F5AA82F08C66}"
 EndProject
