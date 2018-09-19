@@ -44,7 +44,7 @@ namespace Acopio
                         {
                             vIdUsuario = sLogin.Datos.Rows[0][0].ToString();
                             vIdActivo = Convert.ToInt32(sLogin.Datos.Rows[0][2].ToString());
-                            Frm_Principal frmP = new Frm_Principal();
+                            Frm_RPT_Acopiadores frmP = new Frm_RPT_Acopiadores();
                             MSRegistro RegIn = new MSRegistro();
                             
                             if (vIdActivo == 1)
@@ -101,7 +101,7 @@ namespace Acopio
         {
             txtUser.Focus();
             MSRegistro RegOut = new MSRegistro();
-            SkinForm.LookAndFeel.SetSkinStyle(RegOut.GetSetting("ConexionSQL", "Sking"));
+            //SkinForm.LookAndFeel.SetSkinStyle(RegOut.GetSetting("ConexionSQL", "Sking"));
         }
     }
 }

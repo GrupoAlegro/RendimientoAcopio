@@ -52,6 +52,9 @@ namespace CapaDeDatos
         public string c_codigo_pcali { get; set; }
         public string v_penalizacion_pcali { get; set; }
         public string v_tipocorte { get; set; }
+        public string c_codigo_camion { get;  set; }
+        public int? n_camiones_CMP { get;  set; }
+        public int? n_camiones_MI { get;  set; }
 
         public void MtdSeleccionarAcopiadores()
         {
@@ -232,6 +235,32 @@ namespace CapaDeDatos
                 Exito = false;
             }
         }
+        public void MtdSeleccionarPenalizacionCamiones()
+        {
+            TipoDato _dato = new TipoDato();
+            Exito = true;
+            try
+            {
+                _conexion.NombreProcedimiento = "usp_Rent_Acp_Penalizacion_Camiones_Select";
+                _dato.CadenaTexto = c_codigo_camion;
+                _conexion.agregarParametro(EnumTipoDato.CadenaTexto, _dato, "c_codigo_camion");
+                _conexion.EjecutarDataset();
+                if (_conexion.Exito)
+                {
+                    Datos = _conexion.Datos;
+                }
+                else
+                {
+                    Mensaje = _conexion.Mensaje;
+                    Exito = false;
+                }
+            }
+            catch (Exception e)
+            {
+                Mensaje = e.Message;
+                Exito = false;
+            }
+        }
         public void MtdActualizarGrupoPago()
         {
             TipoDato _dato = new TipoDato();
@@ -344,6 +373,38 @@ namespace CapaDeDatos
                 _conexion.agregarParametro(EnumTipoDato.CadenaTexto, _dato, "v_penalizacion_pcali");
                 _dato.DecimalValor = n_porcentaje;
                 _conexion.agregarParametro(EnumTipoDato.Tipodecimal, _dato, "n_porcentaje");
+                _conexion.EjecutarDataset();
+
+                if (_conexion.Exito)
+                {
+                    Datos = _conexion.Datos;
+                }
+                else
+                {
+                    Mensaje = _conexion.Mensaje;
+                    Exito = false;
+                }
+            }
+            catch (Exception e)
+            {
+                Mensaje = e.Message;
+                Exito = false;
+            }
+        }
+        public void MtdActualizarPenalizacionCamiones()
+        {
+            TipoDato _dato = new TipoDato();
+            Exito = true;
+            try
+            {
+                _conexion.NombreProcedimiento = "usp_Rent_Acp_Penalizacion_Camiones_Update";
+
+                _dato.CadenaTexto = c_codigo_camion;
+                _conexion.agregarParametro(EnumTipoDato.CadenaTexto, _dato, "c_codigo_camion");
+                _dato.Entero = n_camiones_CMP;
+                _conexion.agregarParametro(EnumTipoDato.Entero, _dato, "n_camiones_CMP");
+                _dato.Entero = n_camiones_MI;
+                _conexion.agregarParametro(EnumTipoDato.Entero, _dato, "n_camiones_MI");
                 _conexion.EjecutarDataset();
 
                 if (_conexion.Exito)

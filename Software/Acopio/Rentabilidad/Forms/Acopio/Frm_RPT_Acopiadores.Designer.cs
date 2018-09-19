@@ -32,6 +32,8 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Frm_RPT_Acopiadores));
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
+            this.btnConfigEmail = new DevExpress.XtraEditors.SimpleButton();
+            this.btnCriterios = new DevExpress.XtraEditors.SimpleButton();
             this.btnPenalizacion = new DevExpress.XtraEditors.SimpleButton();
             this.hyperlinkLabelControl1 = new DevExpress.XtraEditors.HyperlinkLabelControl();
             this.btnBonos = new DevExpress.XtraEditors.SimpleButton();
@@ -82,6 +84,8 @@
             // 
             // groupControl1
             // 
+            this.groupControl1.Controls.Add(this.btnConfigEmail);
+            this.groupControl1.Controls.Add(this.btnCriterios);
             this.groupControl1.Controls.Add(this.btnPenalizacion);
             this.groupControl1.Controls.Add(this.hyperlinkLabelControl1);
             this.groupControl1.Controls.Add(this.btnBonos);
@@ -103,12 +107,32 @@
             this.groupControl1.TabIndex = 0;
             this.groupControl1.Text = "Parametros - Fecha de Corte";
             // 
+            // btnConfigEmail
+            // 
+            this.btnConfigEmail.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnConfigEmail.ImageOptions.Image")));
+            this.btnConfigEmail.Location = new System.Drawing.Point(735, 39);
+            this.btnConfigEmail.Name = "btnConfigEmail";
+            this.btnConfigEmail.Size = new System.Drawing.Size(102, 22);
+            this.btnConfigEmail.TabIndex = 18;
+            this.btnConfigEmail.Text = "Config Email";
+            this.btnConfigEmail.Click += new System.EventHandler(this.btnConfigEmail_Click);
+            // 
+            // btnCriterios
+            // 
+            this.btnCriterios.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnCriterios.ImageOptions.Image")));
+            this.btnCriterios.Location = new System.Drawing.Point(627, 67);
+            this.btnCriterios.Name = "btnCriterios";
+            this.btnCriterios.Size = new System.Drawing.Size(102, 22);
+            this.btnCriterios.TabIndex = 16;
+            this.btnCriterios.Text = "Criterios";
+            this.btnCriterios.Click += new System.EventHandler(this.btnCriterios_Click);
+            // 
             // btnPenalizacion
             // 
             this.btnPenalizacion.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnPenalizacion.ImageOptions.Image")));
-            this.btnPenalizacion.Location = new System.Drawing.Point(694, 39);
+            this.btnPenalizacion.Location = new System.Drawing.Point(627, 39);
             this.btnPenalizacion.Name = "btnPenalizacion";
-            this.btnPenalizacion.Size = new System.Drawing.Size(102, 45);
+            this.btnPenalizacion.Size = new System.Drawing.Size(102, 22);
             this.btnPenalizacion.TabIndex = 15;
             this.btnPenalizacion.Text = "Penalización";
             this.btnPenalizacion.Click += new System.EventHandler(this.btnPenalizacion_Click);
@@ -124,7 +148,7 @@
             this.hyperlinkLabelControl1.LineLocation = DevExpress.XtraEditors.LineLocation.Bottom;
             this.hyperlinkLabelControl1.LineOrientation = DevExpress.XtraEditors.LabelLineOrientation.Horizontal;
             this.hyperlinkLabelControl1.LineVisible = true;
-            this.hyperlinkLabelControl1.Location = new System.Drawing.Point(521, 100);
+            this.hyperlinkLabelControl1.Location = new System.Drawing.Point(507, 100);
             this.hyperlinkLabelControl1.Name = "hyperlinkLabelControl1";
             this.hyperlinkLabelControl1.Size = new System.Drawing.Size(231, 16);
             this.hyperlinkLabelControl1.TabIndex = 14;
@@ -136,9 +160,9 @@
             // btnBonos
             // 
             this.btnBonos.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnBonos.ImageOptions.Image")));
-            this.btnBonos.Location = new System.Drawing.Point(586, 39);
+            this.btnBonos.Location = new System.Drawing.Point(519, 67);
             this.btnBonos.Name = "btnBonos";
-            this.btnBonos.Size = new System.Drawing.Size(102, 45);
+            this.btnBonos.Size = new System.Drawing.Size(102, 22);
             this.btnBonos.TabIndex = 13;
             this.btnBonos.Text = "Bonos";
             this.btnBonos.Click += new System.EventHandler(this.btnBonos_Click);
@@ -205,9 +229,9 @@
             // btnConsultar
             // 
             this.btnConsultar.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnConsultar.ImageOptions.Image")));
-            this.btnConsultar.Location = new System.Drawing.Point(478, 39);
+            this.btnConsultar.Location = new System.Drawing.Point(519, 39);
             this.btnConsultar.Name = "btnConsultar";
-            this.btnConsultar.Size = new System.Drawing.Size(102, 45);
+            this.btnConsultar.Size = new System.Drawing.Size(102, 22);
             this.btnConsultar.TabIndex = 8;
             this.btnConsultar.Text = "Consultar";
             this.btnConsultar.Click += new System.EventHandler(this.btnConsultar_Click);
@@ -324,6 +348,8 @@
             this.Name = "Frm_RPT_Acopiadores";
             this.Text = "Reporte Acopiadores";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Frm_RPT_Acopiadores_FormClosing);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Frm_RPT_Acopiadores_FormClosed);
             this.Shown += new System.EventHandler(this.Frm_RPT_Acopiadores_Shown);
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
             this.panelControl1.ResumeLayout(false);
@@ -370,5 +396,7 @@
         private DevExpress.XtraEditors.HyperlinkLabelControl hyperlinkLabelControl1;
         private DevExpress.Utils.Behaviors.BehaviorManager behaviorManager1;
         private DevExpress.XtraEditors.SimpleButton btnPenalizacion;
+        private DevExpress.XtraEditors.SimpleButton btnCriterios;
+        private DevExpress.XtraEditors.SimpleButton btnConfigEmail;
     }
 }

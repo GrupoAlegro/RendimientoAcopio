@@ -30,6 +30,14 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Frm_PenalizacionAcopio));
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
+            this.btnEstablecerEtapa = new DevExpress.XtraEditors.SimpleButton();
+            this.cboEtapasCosechas = new DevExpress.XtraEditors.GridLookUpEdit();
+            this.gridLookUpEdit1View = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
+            this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
+            this.txtCamionesMI = new DevExpress.XtraEditors.TextEdit();
+            this.txtCamiones_CMP = new DevExpress.XtraEditors.TextEdit();
+            this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.btnGuardar = new DevExpress.XtraEditors.SimpleButton();
             this.groupControl2 = new DevExpress.XtraEditors.GroupControl();
             this.panelControl3 = new DevExpress.XtraEditors.PanelControl();
@@ -45,9 +53,12 @@
             this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.ColCalidadPorcentaje = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.cboEtapasCosechas.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridLookUpEdit1View)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtCamionesMI.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtCamiones_CMP.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).BeginInit();
             this.groupControl2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl3)).BeginInit();
@@ -64,6 +75,12 @@
             // 
             // panelControl1
             // 
+            this.panelControl1.Controls.Add(this.btnEstablecerEtapa);
+            this.panelControl1.Controls.Add(this.cboEtapasCosechas);
+            this.panelControl1.Controls.Add(this.labelControl3);
+            this.panelControl1.Controls.Add(this.labelControl2);
+            this.panelControl1.Controls.Add(this.txtCamionesMI);
+            this.panelControl1.Controls.Add(this.txtCamiones_CMP);
             this.panelControl1.Controls.Add(this.labelControl1);
             this.panelControl1.Controls.Add(this.btnGuardar);
             this.panelControl1.Controls.Add(this.groupControl2);
@@ -71,13 +88,88 @@
             this.panelControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelControl1.Location = new System.Drawing.Point(0, 0);
             this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(839, 348);
+            this.panelControl1.Size = new System.Drawing.Size(841, 375);
             this.panelControl1.TabIndex = 0;
+            // 
+            // btnEstablecerEtapa
+            // 
+            this.btnEstablecerEtapa.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnEstablecerEtapa.ImageOptions.Image")));
+            this.btnEstablecerEtapa.Location = new System.Drawing.Point(665, 293);
+            this.btnEstablecerEtapa.Name = "btnEstablecerEtapa";
+            this.btnEstablecerEtapa.Size = new System.Drawing.Size(120, 29);
+            this.btnEstablecerEtapa.TabIndex = 10;
+            this.btnEstablecerEtapa.Text = "Establecer Etapa \r\nActiva";
+            this.btnEstablecerEtapa.Click += new System.EventHandler(this.btnEstablecerEtapa_Click);
+            // 
+            // cboEtapasCosechas
+            // 
+            this.cboEtapasCosechas.EditValue = "Seleecion una Etapa de";
+            this.cboEtapasCosechas.Location = new System.Drawing.Point(454, 297);
+            this.cboEtapasCosechas.Name = "cboEtapasCosechas";
+            this.cboEtapasCosechas.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cboEtapasCosechas.Properties.NullText = "Seleecion una Etapa de Cosecha";
+            this.cboEtapasCosechas.Properties.View = this.gridLookUpEdit1View;
+            this.cboEtapasCosechas.Size = new System.Drawing.Size(195, 20);
+            this.cboEtapasCosechas.TabIndex = 9;
+            // 
+            // gridLookUpEdit1View
+            // 
+            this.gridLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
+            this.gridLookUpEdit1View.Name = "gridLookUpEdit1View";
+            this.gridLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = false;
+            this.gridLookUpEdit1View.OptionsView.ShowGroupPanel = false;
+            // 
+            // labelControl3
+            // 
+            this.labelControl3.Location = new System.Drawing.Point(147, 330);
+            this.labelControl3.Name = "labelControl3";
+            this.labelControl3.Size = new System.Drawing.Size(92, 26);
+            this.labelControl3.TabIndex = 8;
+            this.labelControl3.Text = "Camiones\r\nMixtos Incompletos";
+            // 
+            // labelControl2
+            // 
+            this.labelControl2.Location = new System.Drawing.Point(147, 296);
+            this.labelControl2.Name = "labelControl2";
+            this.labelControl2.Size = new System.Drawing.Size(104, 26);
+            this.labelControl2.TabIndex = 7;
+            this.labelControl2.Text = "Camiones Cancelados\r\nMaximos Permitidos";
+            // 
+            // txtCamionesMI
+            // 
+            this.txtCamionesMI.Location = new System.Drawing.Point(264, 336);
+            this.txtCamionesMI.Name = "txtCamionesMI";
+            this.txtCamionesMI.Size = new System.Drawing.Size(100, 20);
+            this.txtCamionesMI.TabIndex = 6;
+            this.txtCamionesMI.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtCamionesMI_KeyDown);
+            // 
+            // txtCamiones_CMP
+            // 
+            this.txtCamiones_CMP.Location = new System.Drawing.Point(264, 302);
+            this.txtCamiones_CMP.Name = "txtCamiones_CMP";
+            this.txtCamiones_CMP.Size = new System.Drawing.Size(100, 20);
+            this.txtCamiones_CMP.TabIndex = 5;
+            this.txtCamiones_CMP.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtCamiones_CMP_KeyDown);
+            // 
+            // labelControl1
+            // 
+            this.labelControl1.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelControl1.Appearance.ForeColor = System.Drawing.Color.Red;
+            this.labelControl1.Appearance.Options.UseFont = true;
+            this.labelControl1.Appearance.Options.UseForeColor = true;
+            this.labelControl1.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
+            this.labelControl1.Location = new System.Drawing.Point(454, 320);
+            this.labelControl1.Name = "labelControl1";
+            this.labelControl1.Size = new System.Drawing.Size(355, 43);
+            this.labelControl1.TabIndex = 3;
+            this.labelControl1.Text = "Nota: Los porcentajes que se  encuentren en 0.00% \r\nno se tomaran en cuenta para " +
+    "penalización";
             // 
             // btnGuardar
             // 
             this.btnGuardar.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnGuardar.ImageOptions.Image")));
-            this.btnGuardar.Location = new System.Drawing.Point(22, 289);
+            this.btnGuardar.Location = new System.Drawing.Point(22, 299);
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.Size = new System.Drawing.Size(95, 47);
             this.btnGuardar.TabIndex = 2;
@@ -218,24 +310,11 @@
             this.ColCalidadPorcentaje.Visible = true;
             this.ColCalidadPorcentaje.VisibleIndex = 2;
             // 
-            // labelControl1
-            // 
-            this.labelControl1.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelControl1.Appearance.ForeColor = System.Drawing.Color.Red;
-            this.labelControl1.Appearance.Options.UseFont = true;
-            this.labelControl1.Appearance.Options.UseForeColor = true;
-            this.labelControl1.Location = new System.Drawing.Point(150, 307);
-            this.labelControl1.Name = "labelControl1";
-            this.labelControl1.Size = new System.Drawing.Size(623, 16);
-            this.labelControl1.TabIndex = 3;
-            this.labelControl1.Text = "Nota: Los porcentajes que se  encuentren en 0.00% no se tomaran en cuenta para pe" +
-    "nalización";
-            // 
             // Frm_PenalizacionAcopio
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(839, 348);
+            this.ClientSize = new System.Drawing.Size(841, 375);
             this.Controls.Add(this.panelControl1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
@@ -247,6 +326,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
             this.panelControl1.ResumeLayout(false);
             this.panelControl1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.cboEtapasCosechas.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridLookUpEdit1View)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtCamionesMI.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtCamiones_CMP.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).EndInit();
             this.groupControl2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.panelControl3)).EndInit();
@@ -282,5 +365,12 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn2;
         private DevExpress.XtraGrid.Columns.GridColumn ColCalidadPorcentaje;
         private DevExpress.XtraEditors.LabelControl labelControl1;
+        private DevExpress.XtraEditors.LabelControl labelControl3;
+        private DevExpress.XtraEditors.LabelControl labelControl2;
+        private DevExpress.XtraEditors.TextEdit txtCamionesMI;
+        private DevExpress.XtraEditors.TextEdit txtCamiones_CMP;
+        private DevExpress.XtraEditors.GridLookUpEdit cboEtapasCosechas;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridLookUpEdit1View;
+        private DevExpress.XtraEditors.SimpleButton btnEstablecerEtapa;
     }
 }

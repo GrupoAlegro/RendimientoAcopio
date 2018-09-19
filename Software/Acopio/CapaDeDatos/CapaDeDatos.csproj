@@ -31,8 +31,13 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DevExpress.XtraEditors.v17.1, Version=17.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\..\Program Files (x86)\DevExpress 17.1\Components\Bin\Framework\DevExpress.XtraEditors.v17.1.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -43,7 +48,11 @@
     <Compile Include="CLS_Acopio.cs" />
     <Compile Include="CLS_Calibres.cs" />
     <Compile Include="CLS_Categorias.cs" />
+    <Compile Include="CLS_Correos.cs" />
+    <Compile Include="CLS_Criterios.cs" />
     <Compile Include="CLS_Distribuidor.cs" />
+    <Compile Include="CLS_Email.cs" />
+    <Compile Include="CLS_EtapasCosechas.cs" />
     <Compile Include="CLS_Folio.cs" />
     <Compile Include="CLS_Pais.cs" />
     <Compile Include="CLS_PedidosMedicion.cs" />

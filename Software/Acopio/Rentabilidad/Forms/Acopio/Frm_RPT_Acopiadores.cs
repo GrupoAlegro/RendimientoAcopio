@@ -46,10 +46,10 @@ namespace Acopio
             }
             return sVal;
         }
-        public string c_codigo_usu { get; internal set; }
-        public string Acopiador { get; private set; }
-        public string FechaInicio { get; private set; }
-        public string FechaFin { get; private set; }
+        public string c_codigo_usu { get; set; }
+        public string Acopiador { get;  set; }
+        public string FechaInicio { get;  set; }
+        public string FechaFin { get;  set; }
 
         private void CargarAcopiadores(int? Valor)
         {
@@ -945,6 +945,31 @@ namespace Acopio
         private void btnPenalizacion_Click(object sender, EventArgs e)
         {
             Frm_PenalizacionAcopio frmb = new Frm_PenalizacionAcopio();
+            frmb.ShowDialog();
+        }
+
+        private void btnConfigEmail_Click(object sender, EventArgs e)
+        {
+            Frm_ConfigEmail frmb = new Frm_ConfigEmail();
+            frmb.ShowDialog();
+        }
+
+        private void Frm_RPT_Acopiadores_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            DialogResult = XtraMessageBox.Show("¿Desea salir de la aplicación?", "Salir", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1);
+            if (DialogResult == DialogResult.No)
+            {
+                e.Cancel = true;
+            }
+        }
+        private void Frm_RPT_Acopiadores_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void btnCriterios_Click(object sender, EventArgs e)
+        {
+            Frm_Criterios frmb = new Frm_Criterios();
             frmb.ShowDialog();
         }
     }

@@ -70,7 +70,7 @@
             // SkinForm
             // 
             this.SkinForm.EnableBonusSkins = true;
-            this.SkinForm.LookAndFeel.SkinName = "Money Twins";
+            this.SkinForm.LookAndFeel.SkinName = "Sharp";
             // 
             // btnAcceso
             // 
@@ -177,7 +177,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(587, 158);
+            this.ClientSize = new System.Drawing.Size(585, 151);
             this.Controls.Add(this.cERecordarContrasenia);
             this.Controls.Add(this.gridLookUpEdit1);
             this.Controls.Add(this.labelControl3);
@@ -195,7 +195,7 @@
             this.MinimizeBox = false;
             this.Name = "Frm_Login";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Acceso Agro-IntelliTrace";
+            this.Text = "Acceso Productividad Acopio";
             this.Load += new System.EventHandler(this.Frm_Login_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureEdit1.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtUser.Properties)).EndInit();
