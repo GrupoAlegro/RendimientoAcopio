@@ -35,6 +35,10 @@
             this.dtgCriterios = new DevExpress.XtraGrid.GridControl();
             this.dtgValCriterios = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
+            this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
+            this.chkCat1 = new DevExpress.XtraEditors.CheckEdit();
+            this.chkNal = new DevExpress.XtraEditors.CheckEdit();
+            this.chkCat2 = new DevExpress.XtraEditors.CheckEdit();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.txtPorcentaje = new DevExpress.XtraEditors.TextEdit();
             this.cboEtapasCosechas = new DevExpress.XtraEditors.GridLookUpEdit();
@@ -50,6 +54,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.dtgValCriterios)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).BeginInit();
             this.panelControl2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
+            this.groupControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chkCat1.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkNal.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkCat2.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPorcentaje.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboEtapasCosechas.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridLookUpEdit1View)).BeginInit();
@@ -105,6 +114,7 @@
             // 
             // panelControl2
             // 
+            this.panelControl2.Controls.Add(this.groupControl1);
             this.panelControl2.Controls.Add(this.labelControl1);
             this.panelControl2.Controls.Add(this.txtPorcentaje);
             this.panelControl2.Controls.Add(this.cboEtapasCosechas);
@@ -114,6 +124,41 @@
             this.panelControl2.Name = "panelControl2";
             this.panelControl2.Size = new System.Drawing.Size(528, 117);
             this.panelControl2.TabIndex = 1;
+            // 
+            // groupControl1
+            // 
+            this.groupControl1.Controls.Add(this.chkCat1);
+            this.groupControl1.Controls.Add(this.chkNal);
+            this.groupControl1.Controls.Add(this.chkCat2);
+            this.groupControl1.Location = new System.Drawing.Point(379, 12);
+            this.groupControl1.Name = "groupControl1";
+            this.groupControl1.Size = new System.Drawing.Size(127, 93);
+            this.groupControl1.TabIndex = 17;
+            this.groupControl1.Text = "Criterio Calculo";
+            // 
+            // chkCat1
+            // 
+            this.chkCat1.Location = new System.Drawing.Point(5, 29);
+            this.chkCat1.Name = "chkCat1";
+            this.chkCat1.Properties.Caption = "Cat1";
+            this.chkCat1.Size = new System.Drawing.Size(75, 19);
+            this.chkCat1.TabIndex = 14;
+            // 
+            // chkNal
+            // 
+            this.chkNal.Location = new System.Drawing.Point(5, 69);
+            this.chkNal.Name = "chkNal";
+            this.chkNal.Properties.Caption = "Nacional";
+            this.chkNal.Size = new System.Drawing.Size(75, 19);
+            this.chkNal.TabIndex = 16;
+            // 
+            // chkCat2
+            // 
+            this.chkCat2.Location = new System.Drawing.Point(5, 49);
+            this.chkCat2.Name = "chkCat2";
+            this.chkCat2.Properties.Caption = "Cat2";
+            this.chkCat2.Size = new System.Drawing.Size(75, 19);
+            this.chkCat2.TabIndex = 15;
             // 
             // labelControl1
             // 
@@ -155,7 +200,7 @@
             // btnGuardar
             // 
             this.btnGuardar.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnGuardar.ImageOptions.Image")));
-            this.btnGuardar.Location = new System.Drawing.Point(235, 27);
+            this.btnGuardar.Location = new System.Drawing.Point(243, 27);
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.Size = new System.Drawing.Size(95, 47);
             this.btnGuardar.TabIndex = 3;
@@ -187,6 +232,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).EndInit();
             this.panelControl2.ResumeLayout(false);
             this.panelControl2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();
+            this.groupControl1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.chkCat1.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkNal.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkCat2.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPorcentaje.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboEtapasCosechas.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridLookUpEdit1View)).EndInit();
@@ -207,5 +257,9 @@
         private DevExpress.XtraEditors.TextEdit txtPorcentaje;
         private DevExpress.XtraEditors.GridLookUpEdit cboEtapasCosechas;
         private DevExpress.XtraGrid.Views.Grid.GridView gridLookUpEdit1View;
+        private DevExpress.XtraEditors.GroupControl groupControl1;
+        private DevExpress.XtraEditors.CheckEdit chkCat1;
+        private DevExpress.XtraEditors.CheckEdit chkNal;
+        private DevExpress.XtraEditors.CheckEdit chkCat2;
     }
 }

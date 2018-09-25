@@ -147,6 +147,12 @@
     <Compile Include="Conexion\Frm_InstanciaSQL.designer.cs">
       <DependentUpon>Frm_InstanciaSQL.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Acopio\Frm_Cierre.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Acopio\Frm_Cierre.Designer.cs">
+      <DependentUpon>Frm_Cierre.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Acopio\Frm_ConfigEmail.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -158,6 +164,24 @@
     </Compile>
     <Compile Include="Forms\Acopio\Frm_Criterios.Designer.cs">
       <DependentUpon>Frm_Criterios.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Acopio\Frm_GenBonos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Acopio\Frm_GenBonos.Designer.cs">
+      <DependentUpon>Frm_GenBonos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Acopio\Frm_OrdenesCanceladas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Acopio\Frm_OrdenesCanceladas.Designer.cs">
+      <DependentUpon>Frm_OrdenesCanceladas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Acopio\Frm_OrdenesNoCapturadas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Acopio\Frm_OrdenesNoCapturadas.Designer.cs">
+      <DependentUpon>Frm_OrdenesNoCapturadas.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Acopio\Frm_PenalizacionAcopio.cs">
       <SubType>Form</SubType>
@@ -332,11 +356,23 @@
     <EmbeddedResource Include="Conexion\Frm_InstanciaSQL.resx">
       <DependentUpon>Frm_InstanciaSQL.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Acopio\Frm_Cierre.resx">
+      <DependentUpon>Frm_Cierre.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Acopio\Frm_ConfigEmail.resx">
       <DependentUpon>Frm_ConfigEmail.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Acopio\Frm_Criterios.resx">
       <DependentUpon>Frm_Criterios.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Acopio\Frm_GenBonos.resx">
+      <DependentUpon>Frm_GenBonos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Acopio\Frm_OrdenesCanceladas.resx">
+      <DependentUpon>Frm_OrdenesCanceladas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Acopio\Frm_OrdenesNoCapturadas.resx">
+      <DependentUpon>Frm_OrdenesNoCapturadas.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Acopio\Frm_PenalizacionAcopio.resx">
       <DependentUpon>Frm_PenalizacionAcopio.cs</DependentUpon>

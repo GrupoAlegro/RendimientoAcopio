@@ -27,14 +27,16 @@ namespace Acopio
         private void Frm_BonosAcopio_Shown(object sender, EventArgs e)
         {
             PrimeraEdicion = false;
+            BuscarEtapaActiva();
             ColCalidadPorcentaje.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
             ColCalidadPorcentaje.DisplayFormat.FormatString = "###0.00 %";
             ColCalibresPorcentaje.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
             ColCalibresPorcentaje.DisplayFormat.FormatString = "###0.00 %";
-            CargarPenalizacionCalidad();
-            CargarPenalizacionCalibres();
+            CargarPenalizacionCalidad(c_codigo_eta);
+            CargarPenalizacionCalibres(c_codigo_eta);
+            CargarPenalizacionVolumen(c_codigo_eta);
             CargarPenalizacionCamiones();
-            BuscarEtapaActiva();
+            
             CargarEtapasCosecha(c_codigo_eta);
         }
 
@@ -53,18 +55,30 @@ namespace Acopio
                 }
             }
         }
-        private void CargarPenalizacionCalibres()
+        private void CargarPenalizacionCalibres(string c_codigo_eta)
         {
             CLS_Acopio selGrupo = new CLS_Acopio();
+            selGrupo.c_codigo_eta = c_codigo_eta;
             selGrupo.MtdSeleccionarPenalizacionCalibres();
             if (selGrupo.Exito)
             {
                 dtgPenalizacionCalibres.DataSource = selGrupo.Datos;
             }
         }
-        private void CargarPenalizacionCalidad()
+        private void CargarPenalizacionVolumen(string c_codigo_eta)
+        {
+            CLS_Acopio selGrupo = new CLS_Acopio();
+            selGrupo.c_codigo_eta = c_codigo_eta;
+            selGrupo.MtdSeleccionarPenalizacionVolumen();
+            if (selGrupo.Exito)
+            {
+                txtPorcentajeVolumen.Text = selGrupo.Datos.Rows[0][2].ToString();
+            }
+        }
+        private void CargarPenalizacionCalidad(string c_codigo_eta)
         {
             CLS_Acopio selCamion = new CLS_Acopio();
+            selCamion.c_codigo_eta = c_codigo_eta;
             selCamion.MtdSeleccionarPenalizacionCalidad();
             if (selCamion.Exito)
             {
@@ -80,6 +94,7 @@ namespace Acopio
                 dtgPenalizacionCalibres.FocusedView.CloseEditor();
                 ActualizarDatosPenalizacionCalidad();
                 ActualizarDatosPenalizacionCalibres();
+                ActualizarDatosPenalizacionVolumen();
                 ActualizarDatosPenalizacionCamiones();
                 XtraMessageBox.Show("Datos Guardados con Exito");
             }
@@ -135,7 +150,21 @@ namespace Acopio
                 }
             }
         }
-        
+        private void ActualizarDatosPenalizacionVolumen()
+        {
+            int x = 1;
+            for (int i = 0; i < dtgValPenalizacionCalibres.RowCount; i++)
+            {
+                CLS_Acopio artprecio = new CLS_Acopio();
+                artprecio.c_codigo_eta = c_codigo_eta;
+                artprecio.n_porcentaje = Convert.ToDecimal(txtPorcentajeVolumen.Text);
+                artprecio.MtdActualizarPenalizacionVolumen();
+                if (!artprecio.Exito)
+                {
+                    XtraMessageBox.Show(artprecio.Mensaje);
+                }
+            }
+        }
         private void CargarEtapasCosecha(string Valor)
         {
             CLS_EtapasCosechas cbocost = new CLS_EtapasCosechas();
@@ -161,8 +190,9 @@ namespace Acopio
             cbocost.MtdEstablecerEtapa();
             if (cbocost.Exito)
             {
-                CargarPenalizacionCalidad();
-                CargarPenalizacionCalibres();
+                CargarPenalizacionCalidad(c_codigo_eta);
+                CargarPenalizacionCalibres(c_codigo_eta);
+                CargarPenalizacionVolumen(c_codigo_eta);
                 BuscarEtapaActiva();
                 CargarEtapasCosecha(cboEtapasCosechas.EditValue.ToString());
                 XtraMessageBox.Show("Se ha establecido la Etapa de Cosecha con Exito");
@@ -195,6 +225,14 @@ namespace Acopio
         {
             Validar_Campos val = new Validar_Campos();
             val.Solo_Numeros(sender, e, txtCamionesMI.Text);
+        }
+
+        private void cboEtapasCosechas_EditValueChanged(object sender, EventArgs e)
+        {
+            c_codigo_eta = cboEtapasCosechas.EditValue.ToString();
+            CargarPenalizacionCalidad(c_codigo_eta);
+            CargarPenalizacionCalibres(c_codigo_eta);
+            CargarPenalizacionVolumen(c_codigo_eta);
         }
     }
 }

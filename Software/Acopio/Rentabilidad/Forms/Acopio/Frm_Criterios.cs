@@ -68,9 +68,61 @@ namespace Acopio
         {
             BuscarEtapaActiva();
             CargarEtapasCosecha(c_codigo_eta);
+            CargarCriteriosCalculos();
             LlenarListaCalibres(c_codigo_eta);
             LlenarPorcentajeCalibres(c_codigo_eta);
         }
+
+        private void CargarCriteriosCalculos()
+        {
+            CLS_Criterios calcri = new CLS_Criterios();
+            calcri.MtdSeleccionarCriterioCalculos();
+            if(calcri.Exito)
+            {
+                for (int i = 0; i < calcri.Datos.Rows.Count; i++)
+                {
+                    if (calcri.Datos.Rows[i][1].ToString() == "Cat1")
+                    {
+                        if (Convert.ToBoolean(calcri.Datos.Rows[i][2].ToString()) == true)
+                        {
+                            chkCat1.Checked = true;
+                        }
+
+                        else
+                        {
+                            chkCat1.Checked = false;
+                        }
+                    }
+                    if (calcri.Datos.Rows[i][1].ToString() == "Cat2")
+                    {
+                        if (Convert.ToBoolean(calcri.Datos.Rows[i][2].ToString()) == true)
+                        {
+                            chkCat2.Checked = true;
+                        }
+
+                        else
+                        {
+                            chkCat2.Checked = false;
+                        }
+                    }
+                    if (calcri.Datos.Rows[i][1].ToString() == "Nal")
+                    {
+
+                        if (Convert.ToBoolean(calcri.Datos.Rows[i][2].ToString()) == true)
+                        {
+                            chkNal.Checked = true;
+                        }
+
+                        else
+                        {
+                            chkNal.Checked = false;
+                        }
+                    }
+                }
+            }
+
+        }
+
         private void LlenarListaCalibres(string vc_codigo_eta)
         {
             dtgCriterios.DataSource = null;
@@ -166,8 +218,17 @@ namespace Acopio
             dtgCriterios.FocusedView.CloseEditor();
             GuardarCriterios();
             ActualizarPorcentaje(cboEtapasCosechas.EditValue.ToString(),Convert.ToDecimal(txtPorcentaje.Text));
+            ActualizarCriterioVolumen();
             XtraMessageBox.Show("Se guardaron los datos con exito");
         }
+
+        private void ActualizarCriterioVolumen()
+        {
+            ActualizarVolumen("Cat1", Convert.ToInt32(chkCat1.Checked));
+            ActualizarVolumen("Cat2", Convert.ToInt32(chkCat2.Checked));
+            ActualizarVolumen("Nal", Convert.ToInt32(chkNal.Checked));
+        }
+
         private void GuardarCriterios()
         {
             for (int i = 0; i < dtgValCriterios.RowCount; i++)
@@ -185,7 +246,7 @@ namespace Acopio
                 ActualizarCriterio(vc_codigo_ccali, vb_criterio);
             }
         }
-       
+      
         private void ActualizarCriterio(string vc_codigo_ccali, int vb_criterio)
         {
             CLS_Criterios udp = new CLS_Criterios();
@@ -203,6 +264,17 @@ namespace Acopio
             udp.c_codigo_eta = vc_codigo_eta;
             udp.n_criterio_porcentaje = vn_criterio_porcentaje;
             udp.MtdActualizarPorcentajeAgrupado();
+            if (!udp.Exito)
+            {
+                XtraMessageBox.Show(udp.Mensaje);
+            }
+        }
+        private void ActualizarVolumen(string vv_criteriocalculo, int vb_calculo)
+        {
+            CLS_Criterios udp = new CLS_Criterios();
+            udp.v_criteriocalculo = vv_criteriocalculo;
+            udp.b_calculo = vb_calculo;
+            udp.MtdActualizarCriterioVolumen();
             if (!udp.Exito)
             {
                 XtraMessageBox.Show(udp.Mensaje);

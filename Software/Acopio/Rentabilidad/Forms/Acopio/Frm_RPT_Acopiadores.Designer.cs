@@ -32,11 +32,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Frm_RPT_Acopiadores));
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
-            this.btnConfigEmail = new DevExpress.XtraEditors.SimpleButton();
-            this.btnCriterios = new DevExpress.XtraEditors.SimpleButton();
-            this.btnPenalizacion = new DevExpress.XtraEditors.SimpleButton();
             this.hyperlinkLabelControl1 = new DevExpress.XtraEditors.HyperlinkLabelControl();
-            this.btnBonos = new DevExpress.XtraEditors.SimpleButton();
             this.lkUpAcopiador = new DevExpress.XtraEditors.GridLookUpEdit();
             this.gridLookUpEdit1View = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -54,6 +50,21 @@
             this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
             this.RPT_Viewer = new CrystalDecisions.Windows.Forms.CrystalReportViewer();
             this.behaviorManager1 = new DevExpress.Utils.Behaviors.BehaviorManager(this.components);
+            this.ribbonControl1 = new DevExpress.XtraBars.Ribbon.RibbonControl();
+            this.btnConfigEmail = new DevExpress.XtraBars.BarButtonItem();
+            this.btnBonos = new DevExpress.XtraBars.BarButtonItem();
+            this.btnPenalizacion = new DevExpress.XtraBars.BarButtonItem();
+            this.btnCriterios = new DevExpress.XtraBars.BarButtonItem();
+            this.btnOrdenCancelada = new DevExpress.XtraBars.BarButtonItem();
+            this.btnOrdenNCapturada = new DevExpress.XtraBars.BarButtonItem();
+            this.btnCierres = new DevExpress.XtraBars.BarButtonItem();
+            this.btnGenBonos = new DevExpress.XtraBars.BarButtonItem();
+            this.ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
+            this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.ribbonPageGroup2 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.ribbonPageGroup3 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.ribbonStatusBar1 = new DevExpress.XtraBars.Ribbon.RibbonStatusBar();
+            this.ribbonPage2 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
@@ -70,13 +81,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).BeginInit();
             this.panelControl2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.behaviorManager1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).BeginInit();
             this.SuspendLayout();
             // 
             // panelControl1
             // 
             this.panelControl1.Controls.Add(this.groupControl1);
             this.panelControl1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelControl1.Location = new System.Drawing.Point(0, 0);
+            this.panelControl1.Location = new System.Drawing.Point(0, 146);
             this.panelControl1.Name = "panelControl1";
             this.panelControl1.Padding = new System.Windows.Forms.Padding(5);
             this.panelControl1.Size = new System.Drawing.Size(1055, 170);
@@ -84,11 +96,7 @@
             // 
             // groupControl1
             // 
-            this.groupControl1.Controls.Add(this.btnConfigEmail);
-            this.groupControl1.Controls.Add(this.btnCriterios);
-            this.groupControl1.Controls.Add(this.btnPenalizacion);
             this.groupControl1.Controls.Add(this.hyperlinkLabelControl1);
-            this.groupControl1.Controls.Add(this.btnBonos);
             this.groupControl1.Controls.Add(this.lkUpAcopiador);
             this.groupControl1.Controls.Add(this.labelControl4);
             this.groupControl1.Controls.Add(this.ProgressB);
@@ -101,41 +109,11 @@
             this.groupControl1.Controls.Add(this.chkTodos);
             this.groupControl1.Controls.Add(this.labelControl1);
             this.groupControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupControl1.Location = new System.Drawing.Point(7, 7);
+            this.groupControl1.Location = new System.Drawing.Point(8, 8);
             this.groupControl1.Name = "groupControl1";
-            this.groupControl1.Size = new System.Drawing.Size(1041, 156);
+            this.groupControl1.Size = new System.Drawing.Size(1039, 154);
             this.groupControl1.TabIndex = 0;
             this.groupControl1.Text = "Parametros - Fecha de Corte";
-            // 
-            // btnConfigEmail
-            // 
-            this.btnConfigEmail.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnConfigEmail.ImageOptions.Image")));
-            this.btnConfigEmail.Location = new System.Drawing.Point(735, 39);
-            this.btnConfigEmail.Name = "btnConfigEmail";
-            this.btnConfigEmail.Size = new System.Drawing.Size(102, 22);
-            this.btnConfigEmail.TabIndex = 18;
-            this.btnConfigEmail.Text = "Config Email";
-            this.btnConfigEmail.Click += new System.EventHandler(this.btnConfigEmail_Click);
-            // 
-            // btnCriterios
-            // 
-            this.btnCriterios.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnCriterios.ImageOptions.Image")));
-            this.btnCriterios.Location = new System.Drawing.Point(627, 67);
-            this.btnCriterios.Name = "btnCriterios";
-            this.btnCriterios.Size = new System.Drawing.Size(102, 22);
-            this.btnCriterios.TabIndex = 16;
-            this.btnCriterios.Text = "Criterios";
-            this.btnCriterios.Click += new System.EventHandler(this.btnCriterios_Click);
-            // 
-            // btnPenalizacion
-            // 
-            this.btnPenalizacion.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnPenalizacion.ImageOptions.Image")));
-            this.btnPenalizacion.Location = new System.Drawing.Point(627, 39);
-            this.btnPenalizacion.Name = "btnPenalizacion";
-            this.btnPenalizacion.Size = new System.Drawing.Size(102, 22);
-            this.btnPenalizacion.TabIndex = 15;
-            this.btnPenalizacion.Text = "Penalización";
-            this.btnPenalizacion.Click += new System.EventHandler(this.btnPenalizacion_Click);
             // 
             // hyperlinkLabelControl1
             // 
@@ -156,16 +134,6 @@
             this.hyperlinkLabelControl1.UseMnemonic = false;
             this.hyperlinkLabelControl1.Visible = false;
             this.hyperlinkLabelControl1.Click += new System.EventHandler(this.hyperlinkLabelControl1_Click);
-            // 
-            // btnBonos
-            // 
-            this.btnBonos.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnBonos.ImageOptions.Image")));
-            this.btnBonos.Location = new System.Drawing.Point(519, 67);
-            this.btnBonos.Name = "btnBonos";
-            this.btnBonos.Size = new System.Drawing.Size(102, 22);
-            this.btnBonos.TabIndex = 13;
-            this.btnBonos.Text = "Bonos";
-            this.btnBonos.Click += new System.EventHandler(this.btnBonos_Click);
             // 
             // lkUpAcopiador
             // 
@@ -283,14 +251,12 @@
             this.orbTipoReporte.Properties.Appearance.BackColor = System.Drawing.Color.Transparent;
             this.orbTipoReporte.Properties.Appearance.Options.UseBackColor = true;
             this.orbTipoReporte.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-            this.orbTipoReporte.Properties.Columns = 2;
+            this.orbTipoReporte.Properties.Columns = 1;
             this.orbTipoReporte.Properties.GlyphAlignment = DevExpress.Utils.HorzAlignment.Default;
             this.orbTipoReporte.Properties.Items.AddRange(new DevExpress.XtraEditors.Controls.RadioGroupItem[] {
             new DevExpress.XtraEditors.Controls.RadioGroupItem(null, "Concetrado"),
-            new DevExpress.XtraEditors.Controls.RadioGroupItem(null, "Detallado"),
-            new DevExpress.XtraEditors.Controls.RadioGroupItem(null, "No Capturado"),
-            new DevExpress.XtraEditors.Controls.RadioGroupItem(null, "Ordenes Canceladas")});
-            this.orbTipoReporte.Size = new System.Drawing.Size(245, 56);
+            new DevExpress.XtraEditors.Controls.RadioGroupItem(null, "Detallado")});
+            this.orbTipoReporte.Size = new System.Drawing.Size(105, 56);
             this.orbTipoReporte.TabIndex = 3;
             // 
             // chkTodos
@@ -314,10 +280,10 @@
             // 
             this.panelControl2.Controls.Add(this.RPT_Viewer);
             this.panelControl2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelControl2.Location = new System.Drawing.Point(0, 170);
+            this.panelControl2.Location = new System.Drawing.Point(0, 316);
             this.panelControl2.Name = "panelControl2";
             this.panelControl2.Padding = new System.Windows.Forms.Padding(5);
-            this.panelControl2.Size = new System.Drawing.Size(1055, 270);
+            this.panelControl2.Size = new System.Drawing.Size(1055, 101);
             this.panelControl2.TabIndex = 1;
             // 
             // RPT_Viewer
@@ -326,7 +292,7 @@
             this.RPT_Viewer.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.RPT_Viewer.Cursor = System.Windows.Forms.Cursors.Default;
             this.RPT_Viewer.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.RPT_Viewer.Location = new System.Drawing.Point(7, 7);
+            this.RPT_Viewer.Location = new System.Drawing.Point(8, 8);
             this.RPT_Viewer.Name = "RPT_Viewer";
             this.RPT_Viewer.ShowCloseButton = false;
             this.RPT_Viewer.ShowCopyButton = false;
@@ -334,9 +300,146 @@
             this.RPT_Viewer.ShowLogo = false;
             this.RPT_Viewer.ShowParameterPanelButton = false;
             this.RPT_Viewer.ShowTextSearchButton = false;
-            this.RPT_Viewer.Size = new System.Drawing.Size(1041, 256);
+            this.RPT_Viewer.Size = new System.Drawing.Size(1039, 85);
             this.RPT_Viewer.TabIndex = 0;
             this.RPT_Viewer.ToolPanelView = CrystalDecisions.Windows.Forms.ToolPanelViewType.None;
+            // 
+            // ribbonControl1
+            // 
+            this.ribbonControl1.ExpandCollapseItem.Id = 0;
+            this.ribbonControl1.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
+            this.ribbonControl1.ExpandCollapseItem,
+            this.btnConfigEmail,
+            this.btnBonos,
+            this.btnPenalizacion,
+            this.btnCriterios,
+            this.btnOrdenCancelada,
+            this.btnOrdenNCapturada,
+            this.btnCierres,
+            this.btnGenBonos});
+            this.ribbonControl1.Location = new System.Drawing.Point(0, 0);
+            this.ribbonControl1.MaxItemId = 9;
+            this.ribbonControl1.Name = "ribbonControl1";
+            this.ribbonControl1.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
+            this.ribbonPage1});
+            this.ribbonControl1.Size = new System.Drawing.Size(1055, 146);
+            this.ribbonControl1.StatusBar = this.ribbonStatusBar1;
+            // 
+            // btnConfigEmail
+            // 
+            this.btnConfigEmail.Caption = "Email";
+            this.btnConfigEmail.Id = 1;
+            this.btnConfigEmail.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnConfigEmail.ImageOptions.Image")));
+            this.btnConfigEmail.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnConfigEmail.ImageOptions.LargeImage")));
+            this.btnConfigEmail.Name = "btnConfigEmail";
+            this.btnConfigEmail.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnConfigEmail_ItemClick);
+            // 
+            // btnBonos
+            // 
+            this.btnBonos.Caption = "Bonos";
+            this.btnBonos.Id = 2;
+            this.btnBonos.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnBonos.ImageOptions.Image")));
+            this.btnBonos.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnBonos.ImageOptions.LargeImage")));
+            this.btnBonos.Name = "btnBonos";
+            this.btnBonos.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnBonos_ItemClick);
+            // 
+            // btnPenalizacion
+            // 
+            this.btnPenalizacion.Caption = "Penalizacion";
+            this.btnPenalizacion.Id = 3;
+            this.btnPenalizacion.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnPenalizacion.ImageOptions.Image")));
+            this.btnPenalizacion.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnPenalizacion.ImageOptions.LargeImage")));
+            this.btnPenalizacion.Name = "btnPenalizacion";
+            this.btnPenalizacion.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnPenalizacion_ItemClick);
+            // 
+            // btnCriterios
+            // 
+            this.btnCriterios.Caption = "Criterios";
+            this.btnCriterios.Id = 4;
+            this.btnCriterios.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnCriterios.ImageOptions.Image")));
+            this.btnCriterios.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnCriterios.ImageOptions.LargeImage")));
+            this.btnCriterios.Name = "btnCriterios";
+            this.btnCriterios.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnCriterios_ItemClick);
+            // 
+            // btnOrdenCancelada
+            // 
+            this.btnOrdenCancelada.Caption = "Ordenes Canceladas";
+            this.btnOrdenCancelada.Id = 5;
+            this.btnOrdenCancelada.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnOrdenCancelada.ImageOptions.Image")));
+            this.btnOrdenCancelada.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnOrdenCancelada.ImageOptions.LargeImage")));
+            this.btnOrdenCancelada.Name = "btnOrdenCancelada";
+            this.btnOrdenCancelada.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnOrdenCancelada_ItemClick);
+            // 
+            // btnOrdenNCapturada
+            // 
+            this.btnOrdenNCapturada.Caption = "Ordenes No Capturadas";
+            this.btnOrdenNCapturada.Id = 6;
+            this.btnOrdenNCapturada.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnOrdenNCapturada.ImageOptions.Image")));
+            this.btnOrdenNCapturada.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnOrdenNCapturada.ImageOptions.LargeImage")));
+            this.btnOrdenNCapturada.Name = "btnOrdenNCapturada";
+            this.btnOrdenNCapturada.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnOrdenNCapturada_ItemClick);
+            // 
+            // btnCierres
+            // 
+            this.btnCierres.Caption = "Cierres";
+            this.btnCierres.Id = 7;
+            this.btnCierres.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnCierres.ImageOptions.Image")));
+            this.btnCierres.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnCierres.ImageOptions.LargeImage")));
+            this.btnCierres.Name = "btnCierres";
+            this.btnCierres.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnCierres_ItemClick);
+            // 
+            // btnGenBonos
+            // 
+            this.btnGenBonos.Caption = "Generar Bonos";
+            this.btnGenBonos.Id = 8;
+            this.btnGenBonos.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnGenBonos.ImageOptions.Image")));
+            this.btnGenBonos.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnGenBonos.ImageOptions.LargeImage")));
+            this.btnGenBonos.Name = "btnGenBonos";
+            this.btnGenBonos.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnGenBonos_ItemClick);
+            // 
+            // ribbonPage1
+            // 
+            this.ribbonPage1.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
+            this.ribbonPageGroup1,
+            this.ribbonPageGroup2,
+            this.ribbonPageGroup3});
+            this.ribbonPage1.Name = "ribbonPage1";
+            this.ribbonPage1.Text = "Opciones";
+            // 
+            // ribbonPageGroup1
+            // 
+            this.ribbonPageGroup1.ItemLinks.Add(this.btnConfigEmail);
+            this.ribbonPageGroup1.ItemLinks.Add(this.btnBonos);
+            this.ribbonPageGroup1.ItemLinks.Add(this.btnPenalizacion);
+            this.ribbonPageGroup1.ItemLinks.Add(this.btnCriterios);
+            this.ribbonPageGroup1.Name = "ribbonPageGroup1";
+            this.ribbonPageGroup1.Text = "Parametros";
+            // 
+            // ribbonPageGroup2
+            // 
+            this.ribbonPageGroup2.ItemLinks.Add(this.btnOrdenCancelada);
+            this.ribbonPageGroup2.ItemLinks.Add(this.btnOrdenNCapturada);
+            this.ribbonPageGroup2.ItemLinks.Add(this.btnCierres);
+            this.ribbonPageGroup2.Name = "ribbonPageGroup2";
+            this.ribbonPageGroup2.Text = "Consultas";
+            // 
+            // ribbonPageGroup3
+            // 
+            this.ribbonPageGroup3.ItemLinks.Add(this.btnGenBonos);
+            this.ribbonPageGroup3.Name = "ribbonPageGroup3";
+            this.ribbonPageGroup3.Text = "Cierres";
+            // 
+            // ribbonStatusBar1
+            // 
+            this.ribbonStatusBar1.Location = new System.Drawing.Point(0, 417);
+            this.ribbonStatusBar1.Name = "ribbonStatusBar1";
+            this.ribbonStatusBar1.Ribbon = this.ribbonControl1;
+            this.ribbonStatusBar1.Size = new System.Drawing.Size(1055, 23);
+            // 
+            // ribbonPage2
+            // 
+            this.ribbonPage2.Name = "ribbonPage2";
+            this.ribbonPage2.Text = "ribbonPage2";
             // 
             // Frm_RPT_Acopiadores
             // 
@@ -345,7 +448,11 @@
             this.ClientSize = new System.Drawing.Size(1055, 440);
             this.Controls.Add(this.panelControl2);
             this.Controls.Add(this.panelControl1);
+            this.Controls.Add(this.ribbonStatusBar1);
+            this.Controls.Add(this.ribbonControl1);
             this.Name = "Frm_RPT_Acopiadores";
+            this.Ribbon = this.ribbonControl1;
+            this.StatusBar = this.ribbonStatusBar1;
             this.Text = "Reporte Acopiadores";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Frm_RPT_Acopiadores_FormClosing);
@@ -368,7 +475,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).EndInit();
             this.panelControl2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.behaviorManager1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -392,11 +501,22 @@
         private DevExpress.XtraGrid.Views.Grid.GridView gridLookUpEdit1View;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn3;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn4;
-        private DevExpress.XtraEditors.SimpleButton btnBonos;
         private DevExpress.XtraEditors.HyperlinkLabelControl hyperlinkLabelControl1;
         private DevExpress.Utils.Behaviors.BehaviorManager behaviorManager1;
-        private DevExpress.XtraEditors.SimpleButton btnPenalizacion;
-        private DevExpress.XtraEditors.SimpleButton btnCriterios;
-        private DevExpress.XtraEditors.SimpleButton btnConfigEmail;
+        private DevExpress.XtraBars.Ribbon.RibbonControl ribbonControl1;
+        private DevExpress.XtraBars.Ribbon.RibbonPage ribbonPage1;
+        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup1;
+        private DevExpress.XtraBars.Ribbon.RibbonStatusBar ribbonStatusBar1;
+        private DevExpress.XtraBars.Ribbon.RibbonPage ribbonPage2;
+        private DevExpress.XtraBars.BarButtonItem btnConfigEmail;
+        private DevExpress.XtraBars.BarButtonItem btnBonos;
+        private DevExpress.XtraBars.BarButtonItem btnPenalizacion;
+        private DevExpress.XtraBars.BarButtonItem btnCriterios;
+        private DevExpress.XtraBars.BarButtonItem btnOrdenCancelada;
+        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup2;
+        private DevExpress.XtraBars.BarButtonItem btnOrdenNCapturada;
+        private DevExpress.XtraBars.BarButtonItem btnCierres;
+        private DevExpress.XtraBars.BarButtonItem btnGenBonos;
+        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup3;
     }
 }

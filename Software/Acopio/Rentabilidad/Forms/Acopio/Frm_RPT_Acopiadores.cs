@@ -14,7 +14,7 @@ using CrystalDecisions.Shared;
 
 namespace Acopio
 {
-    public partial class Frm_RPT_Acopiadores : DevExpress.XtraEditors.XtraForm
+    public partial class Frm_RPT_Acopiadores : DevExpress.XtraBars.Ribbon.RibbonForm
     {
         ConnectionInfo oConexInfo = new ConnectionInfo();
         const string NombreProyecto = "Agro_IntelliTrace";
@@ -906,11 +906,6 @@ namespace Acopio
             }
         }
 
-        private void btnBonos_Click(object sender, EventArgs e)
-        {
-            Frm_BonosAcopio frmb = new Frm_BonosAcopio();
-            frmb.ShowDialog();
-        }
         private void chkTodos_CheckedChanged(object sender, EventArgs e)
         {
             if(chkTodos.Checked==true)
@@ -942,17 +937,6 @@ namespace Acopio
             RPT_Viewer.ReportSource = RCatalogoP;
         }
 
-        private void btnPenalizacion_Click(object sender, EventArgs e)
-        {
-            Frm_PenalizacionAcopio frmb = new Frm_PenalizacionAcopio();
-            frmb.ShowDialog();
-        }
-
-        private void btnConfigEmail_Click(object sender, EventArgs e)
-        {
-            Frm_ConfigEmail frmb = new Frm_ConfigEmail();
-            frmb.ShowDialog();
-        }
 
         private void Frm_RPT_Acopiadores_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -966,11 +950,45 @@ namespace Acopio
         {
             Application.Exit();
         }
-
-        private void btnCriterios_Click(object sender, EventArgs e)
+        private void btnPenalizacion_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            Frm_PenalizacionAcopio frmb = new Frm_PenalizacionAcopio();
+            frmb.ShowDialog();
+        }
+        private void btnConfigEmail_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            Frm_ConfigEmail frmb = new Frm_ConfigEmail();
+            frmb.ShowDialog();
+        }
+        private void btnBonos_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            Frm_BonosAcopio frmb = new Frm_BonosAcopio();
+            frmb.ShowDialog();
+        }
+        private void btnCriterios_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             Frm_Criterios frmb = new Frm_Criterios();
             frmb.ShowDialog();
+        }
+
+        private void btnOrdenCancelada_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+
+        }
+
+        private void btnOrdenNCapturada_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+
+        }
+
+        private void btnCierres_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+
+        }
+
+        private void btnGenBonos_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+
         }
     }
 }

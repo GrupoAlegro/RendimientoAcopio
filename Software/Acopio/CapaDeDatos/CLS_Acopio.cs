@@ -55,6 +55,7 @@ namespace CapaDeDatos
         public string c_codigo_camion { get;  set; }
         public int? n_camiones_CMP { get;  set; }
         public int? n_camiones_MI { get;  set; }
+        public string c_codigo_eta { get;  set; }
 
         public void MtdSeleccionarAcopiadores()
         {
@@ -193,6 +194,8 @@ namespace CapaDeDatos
             try
             {
                 _conexion.NombreProcedimiento = "usp_Rent_Acp_Penalizacion_Calidad_Select";
+                _dato.CadenaTexto = c_codigo_eta;
+                _conexion.agregarParametro(EnumTipoDato.CadenaTexto, _dato, "c_codigo_eta");
                 _conexion.EjecutarDataset();
                 if (_conexion.Exito)
                 {
@@ -218,6 +221,34 @@ namespace CapaDeDatos
             try
             {
                 _conexion.NombreProcedimiento = "usp_Rent_Acp_Penalizacion_Calibres_Select";
+                _dato.CadenaTexto = c_codigo_eta;
+                _conexion.agregarParametro(EnumTipoDato.CadenaTexto, _dato, "c_codigo_eta");
+                _conexion.EjecutarDataset();
+                if (_conexion.Exito)
+                {
+                    Datos = _conexion.Datos;
+                }
+                else
+                {
+                    Mensaje = _conexion.Mensaje;
+                    Exito = false;
+                }
+            }
+            catch (Exception e)
+            {
+                Mensaje = e.Message;
+                Exito = false;
+            }
+        }
+        public void MtdSeleccionarPenalizacionVolumen()
+        {
+            TipoDato _dato = new TipoDato();
+            Exito = true;
+            try
+            {
+                _conexion.NombreProcedimiento = "usp_Rent_Acp_Penalizacion_Volumen_Select";
+                _dato.CadenaTexto = c_codigo_eta;
+                _conexion.agregarParametro(EnumTipoDato.CadenaTexto, _dato, "c_codigo_eta");
                 _conexion.EjecutarDataset();
                 if (_conexion.Exito)
                 {
@@ -371,6 +402,36 @@ namespace CapaDeDatos
                 _conexion.agregarParametro(EnumTipoDato.CadenaTexto, _dato, "c_codigo_pcali");
                 _dato.CadenaTexto = v_penalizacion_pcali;
                 _conexion.agregarParametro(EnumTipoDato.CadenaTexto, _dato, "v_penalizacion_pcali");
+                _dato.DecimalValor = n_porcentaje;
+                _conexion.agregarParametro(EnumTipoDato.Tipodecimal, _dato, "n_porcentaje");
+                _conexion.EjecutarDataset();
+
+                if (_conexion.Exito)
+                {
+                    Datos = _conexion.Datos;
+                }
+                else
+                {
+                    Mensaje = _conexion.Mensaje;
+                    Exito = false;
+                }
+            }
+            catch (Exception e)
+            {
+                Mensaje = e.Message;
+                Exito = false;
+            }
+        }
+        public void MtdActualizarPenalizacionVolumen()
+        {
+            TipoDato _dato = new TipoDato();
+            Exito = true;
+            try
+            {
+                _conexion.NombreProcedimiento = "usp_Rent_Acp_Penalizacion_Volumen_Update";
+
+                _dato.CadenaTexto = c_codigo_eta;
+                _conexion.agregarParametro(EnumTipoDato.CadenaTexto, _dato, "c_codigo_eta");
                 _dato.DecimalValor = n_porcentaje;
                 _conexion.agregarParametro(EnumTipoDato.Tipodecimal, _dato, "n_porcentaje");
                 _conexion.EjecutarDataset();

@@ -53,6 +53,8 @@
             this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.ColCalidadPorcentaje = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
+            this.txtPorcentajeVolumen = new DevExpress.XtraEditors.TextEdit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cboEtapasCosechas.Properties)).BeginInit();
@@ -71,10 +73,13 @@
             this.panelControl2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtgPenalizacionCalidad)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtgValPenalizacionCalidad)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtPorcentajeVolumen.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // panelControl1
             // 
+            this.panelControl1.Controls.Add(this.txtPorcentajeVolumen);
+            this.panelControl1.Controls.Add(this.labelControl4);
             this.panelControl1.Controls.Add(this.btnEstablecerEtapa);
             this.panelControl1.Controls.Add(this.cboEtapasCosechas);
             this.panelControl1.Controls.Add(this.labelControl3);
@@ -88,7 +93,7 @@
             this.panelControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelControl1.Location = new System.Drawing.Point(0, 0);
             this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(841, 375);
+            this.panelControl1.Size = new System.Drawing.Size(841, 412);
             this.panelControl1.TabIndex = 0;
             // 
             // btnEstablecerEtapa
@@ -112,6 +117,7 @@
             this.cboEtapasCosechas.Properties.View = this.gridLookUpEdit1View;
             this.cboEtapasCosechas.Size = new System.Drawing.Size(195, 20);
             this.cboEtapasCosechas.TabIndex = 9;
+            this.cboEtapasCosechas.EditValueChanged += new System.EventHandler(this.cboEtapasCosechas_EditValueChanged);
             // 
             // gridLookUpEdit1View
             // 
@@ -122,7 +128,7 @@
             // 
             // labelControl3
             // 
-            this.labelControl3.Location = new System.Drawing.Point(147, 330);
+            this.labelControl3.Location = new System.Drawing.Point(150, 363);
             this.labelControl3.Name = "labelControl3";
             this.labelControl3.Size = new System.Drawing.Size(92, 26);
             this.labelControl3.TabIndex = 8;
@@ -130,7 +136,7 @@
             // 
             // labelControl2
             // 
-            this.labelControl2.Location = new System.Drawing.Point(147, 296);
+            this.labelControl2.Location = new System.Drawing.Point(150, 328);
             this.labelControl2.Name = "labelControl2";
             this.labelControl2.Size = new System.Drawing.Size(104, 26);
             this.labelControl2.TabIndex = 7;
@@ -138,7 +144,7 @@
             // 
             // txtCamionesMI
             // 
-            this.txtCamionesMI.Location = new System.Drawing.Point(264, 336);
+            this.txtCamionesMI.Location = new System.Drawing.Point(267, 366);
             this.txtCamionesMI.Name = "txtCamionesMI";
             this.txtCamionesMI.Size = new System.Drawing.Size(100, 20);
             this.txtCamionesMI.TabIndex = 6;
@@ -146,7 +152,7 @@
             // 
             // txtCamiones_CMP
             // 
-            this.txtCamiones_CMP.Location = new System.Drawing.Point(264, 302);
+            this.txtCamiones_CMP.Location = new System.Drawing.Point(267, 331);
             this.txtCamiones_CMP.Name = "txtCamiones_CMP";
             this.txtCamiones_CMP.Size = new System.Drawing.Size(100, 20);
             this.txtCamiones_CMP.TabIndex = 5;
@@ -159,17 +165,17 @@
             this.labelControl1.Appearance.Options.UseFont = true;
             this.labelControl1.Appearance.Options.UseForeColor = true;
             this.labelControl1.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-            this.labelControl1.Location = new System.Drawing.Point(454, 320);
+            this.labelControl1.Location = new System.Drawing.Point(454, 334);
             this.labelControl1.Name = "labelControl1";
             this.labelControl1.Size = new System.Drawing.Size(355, 43);
             this.labelControl1.TabIndex = 3;
-            this.labelControl1.Text = "Nota: Los porcentajes que se  encuentren en 0.00% \r\nno se tomaran en cuenta para " +
-    "penalización";
+            this.labelControl1.Text = "Nota: Los porcentajes que se  encuentren \r\ncapturados Seran los maximos permitido" +
+    "s";
             // 
             // btnGuardar
             // 
             this.btnGuardar.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnGuardar.ImageOptions.Image")));
-            this.btnGuardar.Location = new System.Drawing.Point(22, 299);
+            this.btnGuardar.Location = new System.Drawing.Point(22, 313);
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.Size = new System.Drawing.Size(95, 47);
             this.btnGuardar.TabIndex = 2;
@@ -310,11 +316,28 @@
             this.ColCalidadPorcentaje.Visible = true;
             this.ColCalidadPorcentaje.VisibleIndex = 2;
             // 
+            // labelControl4
+            // 
+            this.labelControl4.Location = new System.Drawing.Point(150, 293);
+            this.labelControl4.Name = "labelControl4";
+            this.labelControl4.Size = new System.Drawing.Size(87, 26);
+            this.labelControl4.TabIndex = 12;
+            this.labelControl4.Text = "Porcentaje Minimo \r\nVolumen x Camion";
+            // 
+            // txtPorcentajeVolumen
+            // 
+            this.txtPorcentajeVolumen.Location = new System.Drawing.Point(267, 296);
+            this.txtPorcentajeVolumen.Name = "txtPorcentajeVolumen";
+            this.txtPorcentajeVolumen.Properties.Mask.EditMask = "P";
+            this.txtPorcentajeVolumen.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
+            this.txtPorcentajeVolumen.Size = new System.Drawing.Size(100, 20);
+            this.txtPorcentajeVolumen.TabIndex = 13;
+            // 
             // Frm_PenalizacionAcopio
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(841, 375);
+            this.ClientSize = new System.Drawing.Size(841, 412);
             this.Controls.Add(this.panelControl1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
@@ -342,6 +365,7 @@
             this.panelControl2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dtgPenalizacionCalidad)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtgValPenalizacionCalidad)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtPorcentajeVolumen.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -372,5 +396,7 @@
         private DevExpress.XtraEditors.GridLookUpEdit cboEtapasCosechas;
         private DevExpress.XtraGrid.Views.Grid.GridView gridLookUpEdit1View;
         private DevExpress.XtraEditors.SimpleButton btnEstablecerEtapa;
+        private DevExpress.XtraEditors.LabelControl labelControl4;
+        private DevExpress.XtraEditors.TextEdit txtPorcentajeVolumen;
     }
 }
