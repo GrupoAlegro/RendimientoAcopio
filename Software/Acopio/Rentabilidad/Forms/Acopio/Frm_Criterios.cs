@@ -20,6 +20,7 @@ namespace Acopio
         public int xRow { get; private set; }
         public int vb_criterio { get; private set; }
         public string vc_codigo_ccali { get; private set; }
+        public bool IsModal { get; internal set; }
 
         public Frm_Criterios()
         {
@@ -71,6 +72,17 @@ namespace Acopio
             CargarCriteriosCalculos();
             LlenarListaCalibres(c_codigo_eta);
             LlenarPorcentajeCalibres(c_codigo_eta);
+            if(IsModal==true)
+            {
+                this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+                dtgCriterios.Enabled = false;
+                cboEtapasCosechas.Enabled = false;
+                txtPorcentaje.Enabled = false;
+                chkCat1.Enabled = false;
+                chkCat2.Enabled = false;
+                chkNal.Enabled = false;
+                btnGuardar.Visible = false;
+            }
         }
 
         private void CargarCriteriosCalculos()
@@ -135,8 +147,7 @@ namespace Acopio
                 string vCodigo = string.Empty;
                 Boolean VAgrupar = false;
                 string vCalibres = string.Empty;
-                
-
+      
                 for (int x = 0; x < gst.Datos.Rows.Count; x++)
                 {
                     vCodigo = gst.Datos.Rows[x][0].ToString();

@@ -953,6 +953,7 @@ namespace Acopio
         private void btnPenalizacion_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             Frm_PenalizacionAcopio frmb = new Frm_PenalizacionAcopio();
+            frmb.IsModal = false;
             frmb.ShowDialog();
         }
         private void btnConfigEmail_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -968,6 +969,7 @@ namespace Acopio
         private void btnCriterios_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             Frm_Criterios frmb = new Frm_Criterios();
+            frmb.IsModal = false;
             frmb.ShowDialog();
         }
 

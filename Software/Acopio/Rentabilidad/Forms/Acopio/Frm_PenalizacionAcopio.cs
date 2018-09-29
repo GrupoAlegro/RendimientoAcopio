@@ -19,6 +19,8 @@ namespace Acopio
         public string EtapaCosechaActiva { get; set; }
         public string c_codigo_eta { get; set; }
         public string v_descripcion_etapa { get; set; }
+        public bool IsModal { get; internal set; }
+
         public Frm_PenalizacionAcopio()
         {
             InitializeComponent();
@@ -36,8 +38,19 @@ namespace Acopio
             CargarPenalizacionCalibres(c_codigo_eta);
             CargarPenalizacionVolumen(c_codigo_eta);
             CargarPenalizacionCamiones();
-            
             CargarEtapasCosecha(c_codigo_eta);
+            if (IsModal == true)
+            {
+                this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+                dtgPenalizacionCalibres.Enabled = false;
+                dtgPenalizacionCalidad.Enabled = false;
+                txtCamionesMI.Enabled = false;
+                txtCamiones_CMP.Enabled = false;
+                txtPorcentajeVolumen.Enabled = false;
+                cboEtapasCosechas.Enabled = false;
+                btnEstablecerEtapa.Visible = false;
+                btnGuardar.Visible = false;
+            }
         }
 
         private void BuscarEtapaActiva()
