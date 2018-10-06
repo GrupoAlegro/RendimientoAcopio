@@ -31,7 +31,10 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Frm_GenBonos));
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
+            this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
+            this.txtEtapaActiva = new DevExpress.XtraEditors.TextEdit();
             this.groupControl2 = new DevExpress.XtraEditors.GroupControl();
+            this.btnBonos = new DevExpress.XtraEditors.SimpleButton();
             this.btnPenalizacion = new DevExpress.XtraEditors.SimpleButton();
             this.btnCriterios = new DevExpress.XtraEditors.SimpleButton();
             this.labelControl6 = new DevExpress.XtraEditors.LabelControl();
@@ -50,13 +53,13 @@
             this.dtFin = new DevExpress.XtraEditors.DateEdit();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.dtInicio = new DevExpress.XtraEditors.DateEdit();
-            this.orbTipoReporte = new DevExpress.XtraEditors.RadioGroup();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
             this.xSCPrincipal = new DevExpress.XtraEditors.XtraScrollableControl();
             this.panelControl6 = new DevExpress.XtraEditors.PanelControl();
             this.dtgCalibres = new DevExpress.XtraGrid.GridControl();
-            this.bandedGridView3 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridView();
+            this.dtgValCalibres = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridView();
+            this.bandedGridColumn3 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.gridColumn22 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.gridColumn23 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.gridColumn24 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
@@ -82,8 +85,9 @@
             this.gridColumn44 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.panelControl5 = new DevExpress.XtraEditors.PanelControl();
             this.dtgCalidad = new DevExpress.XtraGrid.GridControl();
-            this.bandedGridView2 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridView();
+            this.dtgValCalidad = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridView();
             this.gridBand5 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
+            this.bandedGridColumn2 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.gridColumn9 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.gridBand2 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
             this.gridColumn10 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
@@ -95,6 +99,7 @@
             this.gridColumn15 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.gridBand4 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
             this.gridColumn16 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
+            this.bandedGridColumn4 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.gridColumn17 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.gridColumn18 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.gridColumn19 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
@@ -102,14 +107,16 @@
             this.gridColumn21 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.panelControl3 = new DevExpress.XtraEditors.PanelControl();
             this.dtgVolumen = new DevExpress.XtraGrid.GridControl();
-            this.bandedGridView1 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridView();
+            this.dtgValVolumen = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridView();
             this.gridBand1 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
+            this.bandedGridColumn1 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.gridColumn1 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.gridColumn2 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.gridColumn5 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.gridColumn6 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.gridColumn7 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.gridColumn8 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
+            this.bandedGridColumn5 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.gridBand9 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
             this.gridBand6 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
             this.gridBand7 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
@@ -118,6 +125,7 @@
             this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtEtapaActiva.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).BeginInit();
             this.groupControl2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtCamionesMI.Properties)).BeginInit();
@@ -129,22 +137,21 @@
             ((System.ComponentModel.ISupportInitialize)(this.dtFin.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtInicio.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtInicio.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.orbTipoReporte.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).BeginInit();
             this.panelControl2.SuspendLayout();
             this.xSCPrincipal.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl6)).BeginInit();
             this.panelControl6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtgCalibres)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bandedGridView3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtgValCalibres)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl5)).BeginInit();
             this.panelControl5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtgCalidad)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bandedGridView2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtgValCalidad)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl3)).BeginInit();
             this.panelControl3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtgVolumen)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bandedGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtgValVolumen)).BeginInit();
             this.SuspendLayout();
             // 
             // panelControl1
@@ -159,6 +166,8 @@
             // 
             // groupControl1
             // 
+            this.groupControl1.Controls.Add(this.labelControl5);
+            this.groupControl1.Controls.Add(this.txtEtapaActiva);
             this.groupControl1.Controls.Add(this.groupControl2);
             this.groupControl1.Controls.Add(this.labelControl6);
             this.groupControl1.Controls.Add(this.hyperlinkLabelControl1);
@@ -173,7 +182,6 @@
             this.groupControl1.Controls.Add(this.dtFin);
             this.groupControl1.Controls.Add(this.labelControl2);
             this.groupControl1.Controls.Add(this.dtInicio);
-            this.groupControl1.Controls.Add(this.orbTipoReporte);
             this.groupControl1.Controls.Add(this.labelControl1);
             this.groupControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupControl1.Location = new System.Drawing.Point(7, 7);
@@ -182,23 +190,51 @@
             this.groupControl1.TabIndex = 0;
             this.groupControl1.Text = "Parametros - Fecha de Corte";
             // 
+            // labelControl5
+            // 
+            this.labelControl5.Location = new System.Drawing.Point(476, 103);
+            this.labelControl5.Name = "labelControl5";
+            this.labelControl5.Size = new System.Drawing.Size(65, 13);
+            this.labelControl5.TabIndex = 21;
+            this.labelControl5.Text = "Etapa Activa:";
+            // 
+            // txtEtapaActiva
+            // 
+            this.txtEtapaActiva.Location = new System.Drawing.Point(590, 99);
+            this.txtEtapaActiva.Name = "txtEtapaActiva";
+            this.txtEtapaActiva.Properties.ReadOnly = true;
+            this.txtEtapaActiva.Size = new System.Drawing.Size(100, 20);
+            this.txtEtapaActiva.TabIndex = 20;
+            this.txtEtapaActiva.ToolTip = "Camiones\r\nMixtos Incompletos";
+            // 
             // groupControl2
             // 
+            this.groupControl2.Controls.Add(this.btnBonos);
             this.groupControl2.Controls.Add(this.btnPenalizacion);
             this.groupControl2.Controls.Add(this.btnCriterios);
-            this.groupControl2.Location = new System.Drawing.Point(652, 35);
+            this.groupControl2.Location = new System.Drawing.Point(716, 35);
             this.groupControl2.Name = "groupControl2";
-            this.groupControl2.Size = new System.Drawing.Size(136, 103);
+            this.groupControl2.Size = new System.Drawing.Size(136, 127);
             this.groupControl2.TabIndex = 19;
             this.groupControl2.Text = "Criterios y Penalizacion";
+            // 
+            // btnBonos
+            // 
+            this.btnBonos.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnBonos.ImageOptions.Image")));
+            this.btnBonos.Location = new System.Drawing.Point(16, 90);
+            this.btnBonos.Name = "btnBonos";
+            this.btnBonos.Size = new System.Drawing.Size(102, 22);
+            this.btnBonos.TabIndex = 6;
+            this.btnBonos.Text = "Bonos";
+            this.btnBonos.Click += new System.EventHandler(this.btnBonos_Click);
             // 
             // btnPenalizacion
             // 
             this.btnPenalizacion.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnPenalizacion.ImageOptions.Image")));
-            this.btnPenalizacion.Location = new System.Drawing.Point(16, 63);
+            this.btnPenalizacion.Location = new System.Drawing.Point(16, 61);
             this.btnPenalizacion.Name = "btnPenalizacion";
             this.btnPenalizacion.Size = new System.Drawing.Size(102, 22);
-            this.btnPenalizacion.TabIndex = 10;
+            this.btnPenalizacion.TabIndex = 5;
             this.btnPenalizacion.Text = "Penalizacion";
             this.btnPenalizacion.Click += new System.EventHandler(this.btnPenalizacion_Click);
             // 
@@ -208,13 +244,13 @@
             this.btnCriterios.Location = new System.Drawing.Point(16, 32);
             this.btnCriterios.Name = "btnCriterios";
             this.btnCriterios.Size = new System.Drawing.Size(102, 22);
-            this.btnCriterios.TabIndex = 9;
+            this.btnCriterios.TabIndex = 4;
             this.btnCriterios.Text = "Criterios";
             this.btnCriterios.Click += new System.EventHandler(this.btnCriterios_Click);
             // 
             // labelControl6
             // 
-            this.labelControl6.Location = new System.Drawing.Point(412, 70);
+            this.labelControl6.Location = new System.Drawing.Point(476, 66);
             this.labelControl6.Name = "labelControl6";
             this.labelControl6.Size = new System.Drawing.Size(92, 26);
             this.labelControl6.TabIndex = 18;
@@ -241,7 +277,7 @@
             // 
             // labelControl7
             // 
-            this.labelControl7.Location = new System.Drawing.Point(412, 35);
+            this.labelControl7.Location = new System.Drawing.Point(476, 35);
             this.labelControl7.Name = "labelControl7";
             this.labelControl7.Size = new System.Drawing.Size(55, 26);
             this.labelControl7.TabIndex = 17;
@@ -249,8 +285,9 @@
             // 
             // txtCamionesMI
             // 
-            this.txtCamionesMI.Location = new System.Drawing.Point(526, 73);
+            this.txtCamionesMI.Location = new System.Drawing.Point(590, 69);
             this.txtCamionesMI.Name = "txtCamionesMI";
+            this.txtCamionesMI.Properties.ReadOnly = true;
             this.txtCamionesMI.Size = new System.Drawing.Size(100, 20);
             this.txtCamionesMI.TabIndex = 16;
             this.txtCamionesMI.ToolTip = "Camiones\r\nMixtos Incompletos";
@@ -265,7 +302,7 @@
             this.lkUpAcopiador.Properties.NullText = "Seleccione Acopiador";
             this.lkUpAcopiador.Properties.View = this.gridLookUpEdit1View;
             this.lkUpAcopiador.Size = new System.Drawing.Size(211, 20);
-            this.lkUpAcopiador.TabIndex = 11;
+            this.lkUpAcopiador.TabIndex = 0;
             // 
             // gridLookUpEdit1View
             // 
@@ -295,8 +332,9 @@
             // 
             // txtCamiones_CMP
             // 
-            this.txtCamiones_CMP.Location = new System.Drawing.Point(526, 38);
+            this.txtCamiones_CMP.Location = new System.Drawing.Point(590, 38);
             this.txtCamiones_CMP.Name = "txtCamiones_CMP";
+            this.txtCamiones_CMP.Properties.ReadOnly = true;
             this.txtCamiones_CMP.Size = new System.Drawing.Size(100, 20);
             this.txtCamiones_CMP.TabIndex = 15;
             this.txtCamiones_CMP.ToolTip = "Camiones Cancelados\r\nMaximos Permitidos";
@@ -325,11 +363,12 @@
             // btnConsultar
             // 
             this.btnConsultar.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnConsultar.ImageOptions.Image")));
-            this.btnConsultar.Location = new System.Drawing.Point(452, 120);
+            this.btnConsultar.Location = new System.Drawing.Point(230, 66);
             this.btnConsultar.Name = "btnConsultar";
             this.btnConsultar.Size = new System.Drawing.Size(102, 22);
-            this.btnConsultar.TabIndex = 8;
+            this.btnConsultar.TabIndex = 3;
             this.btnConsultar.Text = "Consultar";
+            this.btnConsultar.Click += new System.EventHandler(this.btnConsultar_Click);
             // 
             // labelControl3
             // 
@@ -349,7 +388,7 @@
             this.dtFin.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.dtFin.Size = new System.Drawing.Size(100, 20);
-            this.dtFin.TabIndex = 6;
+            this.dtFin.TabIndex = 2;
             // 
             // labelControl2
             // 
@@ -369,22 +408,7 @@
             this.dtInicio.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.dtInicio.Size = new System.Drawing.Size(100, 20);
-            this.dtInicio.TabIndex = 4;
-            // 
-            // orbTipoReporte
-            // 
-            this.orbTipoReporte.Location = new System.Drawing.Point(227, 64);
-            this.orbTipoReporte.Name = "orbTipoReporte";
-            this.orbTipoReporte.Properties.Appearance.BackColor = System.Drawing.Color.Transparent;
-            this.orbTipoReporte.Properties.Appearance.Options.UseBackColor = true;
-            this.orbTipoReporte.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-            this.orbTipoReporte.Properties.Columns = 1;
-            this.orbTipoReporte.Properties.GlyphAlignment = DevExpress.Utils.HorzAlignment.Default;
-            this.orbTipoReporte.Properties.Items.AddRange(new DevExpress.XtraEditors.Controls.RadioGroupItem[] {
-            new DevExpress.XtraEditors.Controls.RadioGroupItem(null, "Concetrado"),
-            new DevExpress.XtraEditors.Controls.RadioGroupItem(null, "Detallado")});
-            this.orbTipoReporte.Size = new System.Drawing.Size(105, 55);
-            this.orbTipoReporte.TabIndex = 3;
+            this.dtInicio.TabIndex = 1;
             // 
             // labelControl1
             // 
@@ -433,21 +457,21 @@
             // 
             this.dtgCalibres.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dtgCalibres.Location = new System.Drawing.Point(12, 12);
-            this.dtgCalibres.MainView = this.bandedGridView3;
+            this.dtgCalibres.MainView = this.dtgValCalibres;
             this.dtgCalibres.Name = "dtgCalibres";
             this.dtgCalibres.Size = new System.Drawing.Size(897, 362);
             this.dtgCalibres.TabIndex = 1;
             this.dtgCalibres.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.bandedGridView3});
+            this.dtgValCalibres});
             // 
-            // bandedGridView3
+            // dtgValCalibres
             // 
-            this.bandedGridView3.Bands.AddRange(new DevExpress.XtraGrid.Views.BandedGrid.GridBand[] {
+            this.dtgValCalibres.Bands.AddRange(new DevExpress.XtraGrid.Views.BandedGrid.GridBand[] {
             this.gridBand9,
             this.gridBand6,
             this.gridBand7,
             this.gridBand8});
-            this.bandedGridView3.Columns.AddRange(new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn[] {
+            this.dtgValCalibres.Columns.AddRange(new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn[] {
             this.gridColumn22,
             this.gridColumn23,
             this.gridColumn24,
@@ -470,13 +494,23 @@
             this.gridColumn41,
             this.gridColumn42,
             this.gridColumn43,
-            this.gridColumn44});
-            this.bandedGridView3.GridControl = this.dtgCalibres;
-            this.bandedGridView3.Name = "bandedGridView3";
-            this.bandedGridView3.OptionsMenu.EnableFooterMenu = false;
-            this.bandedGridView3.OptionsSelection.MultiSelect = true;
-            this.bandedGridView3.OptionsView.ShowFooter = true;
-            this.bandedGridView3.OptionsView.ShowGroupPanel = false;
+            this.gridColumn44,
+            this.bandedGridColumn3,
+            this.bandedGridColumn5});
+            this.dtgValCalibres.GridControl = this.dtgCalibres;
+            this.dtgValCalibres.Name = "dtgValCalibres";
+            this.dtgValCalibres.OptionsMenu.EnableFooterMenu = false;
+            this.dtgValCalibres.OptionsSelection.MultiSelect = true;
+            this.dtgValCalibres.OptionsView.ShowFooter = true;
+            this.dtgValCalibres.OptionsView.ShowGroupPanel = false;
+            // 
+            // bandedGridColumn3
+            // 
+            this.bandedGridColumn3.AppearanceCell.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.bandedGridColumn3.AppearanceCell.Options.UseBackColor = true;
+            this.bandedGridColumn3.FieldName = "Column23";
+            this.bandedGridColumn3.Name = "bandedGridColumn3";
+            this.bandedGridColumn3.Visible = true;
             // 
             // gridColumn22
             // 
@@ -618,7 +652,7 @@
             // 
             // gridColumn39
             // 
-            this.gridColumn39.AppearanceCell.BackColor = System.Drawing.Color.PowderBlue;
+            this.gridColumn39.AppearanceCell.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.gridColumn39.AppearanceCell.Options.UseBackColor = true;
             this.gridColumn39.FieldName = "Column17";
             this.gridColumn39.Name = "gridColumn39";
@@ -666,7 +700,7 @@
             // 
             // gridColumn44
             // 
-            this.gridColumn44.AppearanceCell.BackColor = System.Drawing.Color.SkyBlue;
+            this.gridColumn44.AppearanceCell.BackColor = System.Drawing.Color.DodgerBlue;
             this.gridColumn44.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
             this.gridColumn44.AppearanceCell.ForeColor = System.Drawing.Color.White;
             this.gridColumn44.AppearanceCell.Options.UseBackColor = true;
@@ -692,21 +726,21 @@
             // 
             this.dtgCalidad.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dtgCalidad.Location = new System.Drawing.Point(12, 12);
-            this.dtgCalidad.MainView = this.bandedGridView2;
+            this.dtgCalidad.MainView = this.dtgValCalidad;
             this.dtgCalidad.Name = "dtgCalidad";
             this.dtgCalidad.Size = new System.Drawing.Size(897, 431);
             this.dtgCalidad.TabIndex = 1;
             this.dtgCalidad.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.bandedGridView2});
+            this.dtgValCalidad});
             // 
-            // bandedGridView2
+            // dtgValCalidad
             // 
-            this.bandedGridView2.Bands.AddRange(new DevExpress.XtraGrid.Views.BandedGrid.GridBand[] {
+            this.dtgValCalidad.Bands.AddRange(new DevExpress.XtraGrid.Views.BandedGrid.GridBand[] {
             this.gridBand5,
             this.gridBand2,
             this.gridBand3,
             this.gridBand4});
-            this.bandedGridView2.Columns.AddRange(new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn[] {
+            this.dtgValCalidad.Columns.AddRange(new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn[] {
             this.gridColumn9,
             this.gridColumn10,
             this.gridColumn11,
@@ -719,13 +753,15 @@
             this.gridColumn18,
             this.gridColumn19,
             this.gridColumn20,
-            this.gridColumn21});
-            this.bandedGridView2.GridControl = this.dtgCalidad;
-            this.bandedGridView2.Name = "bandedGridView2";
-            this.bandedGridView2.OptionsMenu.EnableFooterMenu = false;
-            this.bandedGridView2.OptionsSelection.MultiSelect = true;
-            this.bandedGridView2.OptionsView.ShowFooter = true;
-            this.bandedGridView2.OptionsView.ShowGroupPanel = false;
+            this.gridColumn21,
+            this.bandedGridColumn2,
+            this.bandedGridColumn4});
+            this.dtgValCalidad.GridControl = this.dtgCalidad;
+            this.dtgValCalidad.Name = "dtgValCalidad";
+            this.dtgValCalidad.OptionsMenu.EnableFooterMenu = false;
+            this.dtgValCalidad.OptionsSelection.MultiSelect = true;
+            this.dtgValCalidad.OptionsView.ShowFooter = true;
+            this.dtgValCalidad.OptionsView.ShowGroupPanel = false;
             // 
             // gridBand5
             // 
@@ -734,10 +770,20 @@
             this.gridBand5.AppearanceHeader.Options.UseTextOptions = true;
             this.gridBand5.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.gridBand5.Caption = "Huerta";
+            this.gridBand5.Columns.Add(this.bandedGridColumn2);
             this.gridBand5.Columns.Add(this.gridColumn9);
             this.gridBand5.Name = "gridBand5";
             this.gridBand5.VisibleIndex = 0;
-            this.gridBand5.Width = 75;
+            this.gridBand5.Width = 107;
+            // 
+            // bandedGridColumn2
+            // 
+            this.bandedGridColumn2.AppearanceCell.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.bandedGridColumn2.AppearanceCell.Options.UseBackColor = true;
+            this.bandedGridColumn2.FieldName = "Column13";
+            this.bandedGridColumn2.Name = "bandedGridColumn2";
+            this.bandedGridColumn2.Visible = true;
+            this.bandedGridColumn2.Width = 53;
             // 
             // gridColumn9
             // 
@@ -750,6 +796,7 @@
             this.gridColumn9.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Count, "Column0", "Cortes = {0:0}")});
             this.gridColumn9.Visible = true;
+            this.gridColumn9.Width = 54;
             // 
             // gridBand2
             // 
@@ -763,7 +810,7 @@
             this.gridBand2.Columns.Add(this.gridColumn12);
             this.gridBand2.Name = "gridBand2";
             this.gridBand2.VisibleIndex = 1;
-            this.gridBand2.Width = 225;
+            this.gridBand2.Width = 161;
             // 
             // gridColumn10
             // 
@@ -774,6 +821,7 @@
             this.gridColumn10.OptionsColumn.AllowEdit = false;
             this.gridColumn10.OptionsColumn.AllowMove = false;
             this.gridColumn10.Visible = true;
+            this.gridColumn10.Width = 53;
             // 
             // gridColumn11
             // 
@@ -784,6 +832,7 @@
             this.gridColumn11.OptionsColumn.AllowEdit = false;
             this.gridColumn11.OptionsColumn.AllowMove = false;
             this.gridColumn11.Visible = true;
+            this.gridColumn11.Width = 53;
             // 
             // gridColumn12
             // 
@@ -794,6 +843,7 @@
             this.gridColumn12.OptionsColumn.AllowEdit = false;
             this.gridColumn12.OptionsColumn.AllowMove = false;
             this.gridColumn12.Visible = true;
+            this.gridColumn12.Width = 55;
             // 
             // gridBand3
             // 
@@ -807,7 +857,7 @@
             this.gridBand3.Columns.Add(this.gridColumn15);
             this.gridBand3.Name = "gridBand3";
             this.gridBand3.VisibleIndex = 2;
-            this.gridBand3.Width = 225;
+            this.gridBand3.Width = 161;
             // 
             // gridColumn13
             // 
@@ -818,6 +868,7 @@
             this.gridColumn13.OptionsColumn.AllowEdit = false;
             this.gridColumn13.OptionsColumn.AllowMove = false;
             this.gridColumn13.Visible = true;
+            this.gridColumn13.Width = 53;
             // 
             // gridColumn14
             // 
@@ -828,6 +879,7 @@
             this.gridColumn14.OptionsColumn.AllowEdit = false;
             this.gridColumn14.OptionsColumn.AllowMove = false;
             this.gridColumn14.Visible = true;
+            this.gridColumn14.Width = 53;
             // 
             // gridColumn15
             // 
@@ -838,6 +890,7 @@
             this.gridColumn15.OptionsColumn.AllowEdit = false;
             this.gridColumn15.OptionsColumn.AllowMove = false;
             this.gridColumn15.Visible = true;
+            this.gridColumn15.Width = 55;
             // 
             // gridBand4
             // 
@@ -847,6 +900,7 @@
             this.gridBand4.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.gridBand4.Caption = "Calidad";
             this.gridBand4.Columns.Add(this.gridColumn16);
+            this.gridBand4.Columns.Add(this.bandedGridColumn4);
             this.gridBand4.Columns.Add(this.gridColumn17);
             this.gridBand4.Columns.Add(this.gridColumn18);
             this.gridBand4.Columns.Add(this.gridColumn19);
@@ -858,13 +912,23 @@
             // 
             // gridColumn16
             // 
-            this.gridColumn16.AppearanceCell.BackColor = System.Drawing.Color.PowderBlue;
+            this.gridColumn16.AppearanceCell.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.gridColumn16.AppearanceCell.Options.UseBackColor = true;
             this.gridColumn16.FieldName = "Column7";
             this.gridColumn16.Name = "gridColumn16";
             this.gridColumn16.OptionsColumn.AllowEdit = false;
             this.gridColumn16.OptionsColumn.AllowMove = false;
             this.gridColumn16.Visible = true;
+            this.gridColumn16.Width = 62;
+            // 
+            // bandedGridColumn4
+            // 
+            this.bandedGridColumn4.AppearanceCell.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.bandedGridColumn4.AppearanceCell.Options.UseBackColor = true;
+            this.bandedGridColumn4.FieldName = "Column14";
+            this.bandedGridColumn4.Name = "bandedGridColumn4";
+            this.bandedGridColumn4.Visible = true;
+            this.bandedGridColumn4.Width = 78;
             // 
             // gridColumn17
             // 
@@ -877,6 +941,7 @@
             this.gridColumn17.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Column8", "Total = {0:c2}")});
             this.gridColumn17.Visible = true;
+            this.gridColumn17.Width = 62;
             // 
             // gridColumn18
             // 
@@ -889,6 +954,7 @@
             this.gridColumn18.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Column9", "Total = {0:c2}")});
             this.gridColumn18.Visible = true;
+            this.gridColumn18.Width = 62;
             // 
             // gridColumn19
             // 
@@ -901,6 +967,7 @@
             this.gridColumn19.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Column10", "Total = {0:c2}")});
             this.gridColumn19.Visible = true;
+            this.gridColumn19.Width = 62;
             // 
             // gridColumn20
             // 
@@ -913,6 +980,7 @@
             this.gridColumn20.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Column11", "Total = {0:c2}")});
             this.gridColumn20.Visible = true;
+            this.gridColumn20.Width = 62;
             // 
             // gridColumn21
             // 
@@ -929,6 +997,7 @@
             this.gridColumn21.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Column12", "Total = {0:c2}")});
             this.gridColumn21.Visible = true;
+            this.gridColumn21.Width = 62;
             // 
             // panelControl3
             // 
@@ -944,31 +1013,31 @@
             // 
             this.dtgVolumen.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dtgVolumen.Location = new System.Drawing.Point(12, 12);
-            this.dtgVolumen.MainView = this.bandedGridView1;
+            this.dtgVolumen.MainView = this.dtgValVolumen;
             this.dtgVolumen.Name = "dtgVolumen";
             this.dtgVolumen.Size = new System.Drawing.Size(897, 351);
             this.dtgVolumen.TabIndex = 0;
             this.dtgVolumen.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.bandedGridView1});
-            this.dtgVolumen.Click += new System.EventHandler(this.dtgVolumen_Click);
+            this.dtgValVolumen});
             // 
-            // bandedGridView1
+            // dtgValVolumen
             // 
-            this.bandedGridView1.Bands.AddRange(new DevExpress.XtraGrid.Views.BandedGrid.GridBand[] {
+            this.dtgValVolumen.Bands.AddRange(new DevExpress.XtraGrid.Views.BandedGrid.GridBand[] {
             this.gridBand1});
-            this.bandedGridView1.Columns.AddRange(new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn[] {
+            this.dtgValVolumen.Columns.AddRange(new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn[] {
             this.gridColumn1,
             this.gridColumn2,
             this.gridColumn5,
             this.gridColumn6,
             this.gridColumn7,
-            this.gridColumn8});
-            this.bandedGridView1.GridControl = this.dtgVolumen;
-            this.bandedGridView1.Name = "bandedGridView1";
-            this.bandedGridView1.OptionsMenu.EnableFooterMenu = false;
-            this.bandedGridView1.OptionsSelection.MultiSelect = true;
-            this.bandedGridView1.OptionsView.ShowFooter = true;
-            this.bandedGridView1.OptionsView.ShowGroupPanel = false;
+            this.gridColumn8,
+            this.bandedGridColumn1});
+            this.dtgValVolumen.GridControl = this.dtgVolumen;
+            this.dtgValVolumen.Name = "dtgValVolumen";
+            this.dtgValVolumen.OptionsMenu.EnableFooterMenu = false;
+            this.dtgValVolumen.OptionsSelection.MultiSelect = true;
+            this.dtgValVolumen.OptionsView.ShowFooter = true;
+            this.dtgValVolumen.OptionsView.ShowGroupPanel = false;
             // 
             // gridBand1
             // 
@@ -977,6 +1046,7 @@
             this.gridBand1.AppearanceHeader.Options.UseTextOptions = true;
             this.gridBand1.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.gridBand1.Caption = "Volumen";
+            this.gridBand1.Columns.Add(this.bandedGridColumn1);
             this.gridBand1.Columns.Add(this.gridColumn1);
             this.gridBand1.Columns.Add(this.gridColumn2);
             this.gridBand1.Columns.Add(this.gridColumn5);
@@ -985,7 +1055,15 @@
             this.gridBand1.Columns.Add(this.gridColumn8);
             this.gridBand1.Name = "gridBand1";
             this.gridBand1.VisibleIndex = 0;
-            this.gridBand1.Width = 450;
+            this.gridBand1.Width = 525;
+            // 
+            // bandedGridColumn1
+            // 
+            this.bandedGridColumn1.AppearanceCell.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.bandedGridColumn1.AppearanceCell.Options.UseBackColor = true;
+            this.bandedGridColumn1.FieldName = "Column6";
+            this.bandedGridColumn1.Name = "bandedGridColumn1";
+            this.bandedGridColumn1.Visible = true;
             // 
             // gridColumn1
             // 
@@ -996,7 +1074,7 @@
             this.gridColumn1.OptionsColumn.AllowEdit = false;
             this.gridColumn1.OptionsColumn.AllowMove = false;
             this.gridColumn1.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
-            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Count, "Column0", "Total Cortes = {0:c2}")});
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Count, "Column0", "Cortes = {0:0}")});
             this.gridColumn1.Visible = true;
             // 
             // gridColumn2
@@ -1021,7 +1099,7 @@
             // 
             // gridColumn6
             // 
-            this.gridColumn6.AppearanceCell.BackColor = System.Drawing.Color.PowderBlue;
+            this.gridColumn6.AppearanceCell.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.gridColumn6.AppearanceCell.Options.UseBackColor = true;
             this.gridColumn6.FieldName = "Column3";
             this.gridColumn6.Name = "gridColumn6";
@@ -1055,15 +1133,24 @@
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Column5", "Total ={0:c2}")});
             this.gridColumn8.Visible = true;
             // 
+            // bandedGridColumn5
+            // 
+            this.bandedGridColumn5.AppearanceCell.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.bandedGridColumn5.AppearanceCell.Options.UseBackColor = true;
+            this.bandedGridColumn5.FieldName = "Column24";
+            this.bandedGridColumn5.Name = "bandedGridColumn5";
+            this.bandedGridColumn5.Visible = true;
+            // 
             // gridBand9
             // 
             this.gridBand9.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gridBand9.AppearanceHeader.Options.UseFont = true;
             this.gridBand9.Caption = "Huerta";
+            this.gridBand9.Columns.Add(this.bandedGridColumn3);
             this.gridBand9.Columns.Add(this.gridColumn22);
             this.gridBand9.Name = "gridBand9";
             this.gridBand9.VisibleIndex = 0;
-            this.gridBand9.Width = 75;
+            this.gridBand9.Width = 150;
             // 
             // gridBand6
             // 
@@ -1107,6 +1194,7 @@
             this.gridBand8.AppearanceHeader.Options.UseFont = true;
             this.gridBand8.Caption = "Calibres";
             this.gridBand8.Columns.Add(this.gridColumn39);
+            this.gridBand8.Columns.Add(this.bandedGridColumn5);
             this.gridBand8.Columns.Add(this.gridColumn40);
             this.gridBand8.Columns.Add(this.gridColumn41);
             this.gridBand8.Columns.Add(this.gridColumn42);
@@ -1114,7 +1202,7 @@
             this.gridBand8.Columns.Add(this.gridColumn44);
             this.gridBand8.Name = "gridBand8";
             this.gridBand8.VisibleIndex = 3;
-            this.gridBand8.Width = 450;
+            this.gridBand8.Width = 525;
             // 
             // Frm_GenBonos
             // 
@@ -1132,6 +1220,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();
             this.groupControl1.ResumeLayout(false);
             this.groupControl1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtEtapaActiva.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).EndInit();
             this.groupControl2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.txtCamionesMI.Properties)).EndInit();
@@ -1143,22 +1232,21 @@
             ((System.ComponentModel.ISupportInitialize)(this.dtFin.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtInicio.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtInicio.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.orbTipoReporte.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).EndInit();
             this.panelControl2.ResumeLayout(false);
             this.xSCPrincipal.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.panelControl6)).EndInit();
             this.panelControl6.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dtgCalibres)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bandedGridView3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtgValCalibres)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl5)).EndInit();
             this.panelControl5.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dtgCalidad)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bandedGridView2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtgValCalidad)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl3)).EndInit();
             this.panelControl3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dtgVolumen)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bandedGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtgValVolumen)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1179,7 +1267,6 @@
         private DevExpress.XtraEditors.DateEdit dtFin;
         private DevExpress.XtraEditors.LabelControl labelControl2;
         private DevExpress.XtraEditors.DateEdit dtInicio;
-        private DevExpress.XtraEditors.RadioGroup orbTipoReporte;
         private DevExpress.XtraEditors.LabelControl labelControl1;
         private DevExpress.XtraEditors.PanelControl panelControl2;
         private DevExpress.XtraEditors.XtraScrollableControl xSCPrincipal;
@@ -1196,33 +1283,28 @@
         private DevExpress.XtraEditors.GroupControl groupControl2;
         private DevExpress.XtraEditors.SimpleButton btnPenalizacion;
         private DevExpress.XtraEditors.SimpleButton btnCriterios;
-        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridView bandedGridView1;
-        private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand1;
+        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridView dtgValVolumen;
         private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn gridColumn1;
         private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn gridColumn2;
         private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn gridColumn5;
         private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn gridColumn6;
         private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn gridColumn7;
         private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn gridColumn8;
-        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridView bandedGridView2;
-        private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand5;
+        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridView dtgValCalidad;
         private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn gridColumn9;
-        private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand2;
         private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn gridColumn10;
         private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn gridColumn11;
         private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn gridColumn12;
-        private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand3;
         private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn gridColumn13;
         private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn gridColumn14;
         private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn gridColumn15;
-        private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand4;
         private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn gridColumn16;
         private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn gridColumn17;
         private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn gridColumn18;
         private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn gridColumn19;
         private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn gridColumn20;
         private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn gridColumn21;
-        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridView bandedGridView3;
+        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridView dtgValCalibres;
         private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn gridColumn22;
         private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn gridColumn23;
         private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn gridColumn24;
@@ -1246,9 +1328,22 @@
         private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn gridColumn42;
         private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn gridColumn43;
         private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn gridColumn44;
+        private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand1;
+        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumn1;
+        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumn3;
+        private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand5;
+        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumn2;
+        private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand2;
+        private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand3;
+        private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand4;
+        private DevExpress.XtraEditors.SimpleButton btnBonos;
+        private DevExpress.XtraEditors.LabelControl labelControl5;
+        private DevExpress.XtraEditors.TextEdit txtEtapaActiva;
+        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumn4;
         private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand9;
         private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand6;
         private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand7;
         private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand8;
+        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumn5;
     }
 }

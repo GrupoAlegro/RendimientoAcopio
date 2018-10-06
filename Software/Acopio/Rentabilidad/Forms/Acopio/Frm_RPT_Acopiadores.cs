@@ -694,7 +694,6 @@ namespace Acopio
 
                     if (vn_porcentaje <= 10)
                     {
-                        
                         vn_bono_completo = MontoCompletoCamion(Convert.ToDecimal(datos.Rows[i]["n_cajas_pcd"].ToString()));
                         vn_importe = (vn_bono_completo * vn_porcentajeGrupo) * (100 - (vn_porcentaje * 5)) / 100;
                     }
@@ -964,6 +963,7 @@ namespace Acopio
         private void btnBonos_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             Frm_BonosAcopio frmb = new Frm_BonosAcopio();
+            frmb.IsModal = false;
             frmb.ShowDialog();
         }
         private void btnCriterios_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)

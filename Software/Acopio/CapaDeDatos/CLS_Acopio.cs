@@ -56,6 +56,9 @@ namespace CapaDeDatos
         public int? n_camiones_CMP { get;  set; }
         public int? n_camiones_MI { get;  set; }
         public string c_codigo_eta { get;  set; }
+        public string c_codigo_zon { get; set; }
+        public string c_codigo_egru { get; set; }
+        public string v_penalizacion_egru { get; set; }
 
         public void MtdSeleccionarAcopiadores()
         {
@@ -240,13 +243,13 @@ namespace CapaDeDatos
                 Exito = false;
             }
         }
-        public void MtdSeleccionarPenalizacionVolumen()
+        public void MtdSeleccionarPenalizacionEvaluacionGrupo()
         {
             TipoDato _dato = new TipoDato();
             Exito = true;
             try
             {
-                _conexion.NombreProcedimiento = "usp_Rent_Acp_Penalizacion_Volumen_Select";
+                _conexion.NombreProcedimiento = "usp_Rent_Acp_Penalizacion_EvaluacionGrupo_Select";
                 _dato.CadenaTexto = c_codigo_eta;
                 _conexion.agregarParametro(EnumTipoDato.CadenaTexto, _dato, "c_codigo_eta");
                 _conexion.EjecutarDataset();
@@ -275,6 +278,36 @@ namespace CapaDeDatos
                 _conexion.NombreProcedimiento = "usp_Rent_Acp_Penalizacion_Camiones_Select";
                 _dato.CadenaTexto = c_codigo_camion;
                 _conexion.agregarParametro(EnumTipoDato.CadenaTexto, _dato, "c_codigo_camion");
+                _conexion.EjecutarDataset();
+                if (_conexion.Exito)
+                {
+                    Datos = _conexion.Datos;
+                }
+                else
+                {
+                    Mensaje = _conexion.Mensaje;
+                    Exito = false;
+                }
+            }
+            catch (Exception e)
+            {
+                Mensaje = e.Message;
+                Exito = false;
+            }
+        }
+        public void MtdSeleccionarCancelMixtos()
+        {
+            TipoDato _dato = new TipoDato();
+            Exito = true;
+            try
+            {
+                _conexion.NombreProcedimiento = "usp_Rent_BonoACamiones_CancelMixto_Select";
+                _dato.CadenaTexto = c_codigo_zon;
+                _conexion.agregarParametro(EnumTipoDato.CadenaTexto, _dato, "Acopiador");
+                _dato.CadenaTexto = FechaInicio;
+                _conexion.agregarParametro(EnumTipoDato.CadenaTexto, _dato, "FechaInicio");
+                _dato.CadenaTexto = FechaFin;
+                _conexion.agregarParametro(EnumTipoDato.CadenaTexto, _dato, "FechaFin");
                 _conexion.EjecutarDataset();
                 if (_conexion.Exito)
                 {
@@ -422,16 +455,18 @@ namespace CapaDeDatos
                 Exito = false;
             }
         }
-        public void MtdActualizarPenalizacionVolumen()
+        public void MtdActualizarPenalizacionEvaluacionGrupo()
         {
             TipoDato _dato = new TipoDato();
             Exito = true;
             try
             {
-                _conexion.NombreProcedimiento = "usp_Rent_Acp_Penalizacion_Volumen_Update";
+                _conexion.NombreProcedimiento = "usp_Rent_Acp_Penalizacion_EvaluacionGrupo_Update";
 
-                _dato.CadenaTexto = c_codigo_eta;
-                _conexion.agregarParametro(EnumTipoDato.CadenaTexto, _dato, "c_codigo_eta");
+                _dato.CadenaTexto = c_codigo_egru;
+                _conexion.agregarParametro(EnumTipoDato.CadenaTexto, _dato, "c_codigo_egru");
+                _dato.CadenaTexto = v_penalizacion_egru;
+                _conexion.agregarParametro(EnumTipoDato.CadenaTexto, _dato, "v_penalizacion_egru");
                 _dato.DecimalValor = n_porcentaje;
                 _conexion.agregarParametro(EnumTipoDato.Tipodecimal, _dato, "n_porcentaje");
                 _conexion.EjecutarDataset();

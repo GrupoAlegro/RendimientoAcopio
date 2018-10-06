@@ -16,6 +16,7 @@ namespace Acopio
     public partial class Frm_BonosAcopio : DevExpress.XtraEditors.XtraForm
     {
         public bool PrimeraEdicion { get; private set; }
+        public bool IsModal { get; set; }
 
         public Frm_BonosAcopio()
         {
@@ -33,6 +34,13 @@ namespace Acopio
             ColGrupoPagoPorcentaje.DisplayFormat.FormatString = "###0.00 %";
             CargarPagoCamion();
             CargarGrupoPago();
+            if (IsModal == true)
+            {
+                this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+                dtgGrupoPago.Enabled = false;
+                dtgPagoCamion.Enabled = false;
+                btnGuardar.Visible = false;
+            }
         }
 
         private void CargarGrupoPago()

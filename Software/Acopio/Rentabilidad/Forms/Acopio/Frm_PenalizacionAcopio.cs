@@ -34,9 +34,11 @@ namespace Acopio
             ColCalidadPorcentaje.DisplayFormat.FormatString = "###0.00 %";
             ColCalibresPorcentaje.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
             ColCalibresPorcentaje.DisplayFormat.FormatString = "###0.00 %";
+            ColGrupoPorcentaje.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
+            ColGrupoPorcentaje.DisplayFormat.FormatString = "###0.00 %";
             CargarPenalizacionCalidad(c_codigo_eta);
             CargarPenalizacionCalibres(c_codigo_eta);
-            CargarPenalizacionVolumen(c_codigo_eta);
+            CargarPenalizacionEvaluacionGrupo(c_codigo_eta);
             CargarPenalizacionCamiones();
             CargarEtapasCosecha(c_codigo_eta);
             if (IsModal == true)
@@ -44,9 +46,9 @@ namespace Acopio
                 this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
                 dtgPenalizacionCalibres.Enabled = false;
                 dtgPenalizacionCalidad.Enabled = false;
+                dtgGrupoEvaluacion.Enabled = false;
                 txtCamionesMI.Enabled = false;
                 txtCamiones_CMP.Enabled = false;
-                txtPorcentajeVolumen.Enabled = false;
                 cboEtapasCosechas.Enabled = false;
                 btnEstablecerEtapa.Visible = false;
                 btnGuardar.Visible = false;
@@ -78,14 +80,14 @@ namespace Acopio
                 dtgPenalizacionCalibres.DataSource = selGrupo.Datos;
             }
         }
-        private void CargarPenalizacionVolumen(string c_codigo_eta)
+        private void CargarPenalizacionEvaluacionGrupo(string c_codigo_eta)
         {
             CLS_Acopio selGrupo = new CLS_Acopio();
             selGrupo.c_codigo_eta = c_codigo_eta;
-            selGrupo.MtdSeleccionarPenalizacionVolumen();
+            selGrupo.MtdSeleccionarPenalizacionEvaluacionGrupo();
             if (selGrupo.Exito)
             {
-                txtPorcentajeVolumen.Text = selGrupo.Datos.Rows[0][2].ToString();
+                dtgGrupoEvaluacion.DataSource = selGrupo.Datos;
             }
         }
         private void CargarPenalizacionCalidad(string c_codigo_eta)
@@ -107,7 +109,7 @@ namespace Acopio
                 dtgPenalizacionCalibres.FocusedView.CloseEditor();
                 ActualizarDatosPenalizacionCalidad();
                 ActualizarDatosPenalizacionCalibres();
-                ActualizarDatosPenalizacionVolumen();
+                ActualizarDatosPenalizacionEvaluacionGrupo();
                 ActualizarDatosPenalizacionCamiones();
                 XtraMessageBox.Show("Datos Guardados con Exito");
             }
@@ -163,15 +165,15 @@ namespace Acopio
                 }
             }
         }
-        private void ActualizarDatosPenalizacionVolumen()
+        private void ActualizarDatosPenalizacionEvaluacionGrupo()
         {
-            int x = 1;
-            for (int i = 0; i < dtgValPenalizacionCalibres.RowCount; i++)
+            for (int i = 0; i < dtgValGrupoEvaluacion.RowCount; i++)
             {
                 CLS_Acopio artprecio = new CLS_Acopio();
-                artprecio.c_codigo_eta = c_codigo_eta;
-                artprecio.n_porcentaje = Convert.ToDecimal(txtPorcentajeVolumen.Text);
-                artprecio.MtdActualizarPenalizacionVolumen();
+                artprecio.c_codigo_egru = dtgValGrupoEvaluacion.GetRowCellValue(i, dtgValGrupoEvaluacion.Columns["c_codigo_egru"]).ToString();
+                artprecio.v_penalizacion_egru = dtgValGrupoEvaluacion.GetRowCellValue(i, dtgValGrupoEvaluacion.Columns["v_penalizacion_egru"]).ToString();
+                artprecio.n_porcentaje = Convert.ToDecimal(dtgValGrupoEvaluacion.GetRowCellValue(i, dtgValGrupoEvaluacion.Columns["n_porcentaje"]).ToString());
+                artprecio.MtdActualizarPenalizacionEvaluacionGrupo();
                 if (!artprecio.Exito)
                 {
                     XtraMessageBox.Show(artprecio.Mensaje);
@@ -205,7 +207,7 @@ namespace Acopio
             {
                 CargarPenalizacionCalidad(c_codigo_eta);
                 CargarPenalizacionCalibres(c_codigo_eta);
-                CargarPenalizacionVolumen(c_codigo_eta);
+                CargarPenalizacionEvaluacionGrupo(c_codigo_eta);
                 BuscarEtapaActiva();
                 CargarEtapasCosecha(cboEtapasCosechas.EditValue.ToString());
                 XtraMessageBox.Show("Se ha establecido la Etapa de Cosecha con Exito");
@@ -245,7 +247,7 @@ namespace Acopio
             c_codigo_eta = cboEtapasCosechas.EditValue.ToString();
             CargarPenalizacionCalidad(c_codigo_eta);
             CargarPenalizacionCalibres(c_codigo_eta);
-            CargarPenalizacionVolumen(c_codigo_eta);
+            CargarPenalizacionEvaluacionGrupo(c_codigo_eta);
         }
     }
 }

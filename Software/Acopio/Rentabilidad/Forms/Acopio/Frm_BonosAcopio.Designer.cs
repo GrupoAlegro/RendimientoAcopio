@@ -239,7 +239,7 @@
             this.MinimizeBox = false;
             this.Name = "Frm_BonosAcopio";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Frm_BonosAcopio";
+            this.Text = "Bonos Acopio";
             this.Shown += new System.EventHandler(this.Frm_BonosAcopio_Shown);
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
             this.panelControl1.ResumeLayout(false);
