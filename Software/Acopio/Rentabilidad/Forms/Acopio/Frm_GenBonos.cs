@@ -618,6 +618,9 @@ namespace Acopio
             CargarAcopiadores(null);
             lkUpAcopiador.Focus();
             ProgressB.Position = 0;
+            txtTotalVolumen.Text = "0";
+            txtTotalCalidad.Text = "0";
+            txtTotalCalibres.Text = "0";
         }
 
         private void FormatoGrids()
@@ -659,7 +662,7 @@ namespace Acopio
             gridColumn16.DisplayFormat.FormatString = "#0.00 %";
             bandedGridColumn4.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
             bandedGridColumn4.DisplayFormat.FormatString = "$ ###,###0.00";
-            
+
             /*Formato Grid Calibres*/
             dtgValCalibres.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFullFocus;
             dtgValCalibres.OptionsBehavior.Editable = false;
@@ -704,6 +707,9 @@ namespace Acopio
         private void btnConsultar_Click(object sender, EventArgs e)
         {
             LimpiarGrids();
+            txtTotalVolumen.Text = "0";
+            txtTotalCalidad.Text = "0";
+            txtTotalCalibres.Text = "0";
             txtCamiones_CMP.Text = string.Empty;
             txtCamionesMI.Text = string.Empty;
             if (lkUpAcopiador.EditValue != null)
@@ -714,11 +720,17 @@ namespace Acopio
                     if (DialogResult == DialogResult.Yes)
                     {
                         CalcularBonos();
+                        dtgValVolumen.UpdateSummary();
+                        dtgValCalidad.UpdateSummary();
+                        dtgValCalibres.UpdateSummary();
                     }
                 }
                 else
                 {
                     CalcularBonos();
+                    dtgValVolumen.UpdateSummary();
+                    dtgValCalidad.UpdateSummary();
+                    dtgValCalibres.UpdateSummary();
                 }
             }
             else
@@ -788,7 +800,7 @@ namespace Acopio
             LlenarPorcentajeCalibres(c_codigo_eta);
             ConsultaParametrosPenalizacionCal(c_codigo_eta);
             SumGrupoCalibres(c_codigo_eta);
-
+            decimal TotalCalibres = 0;
             for (int i = 0; i < datos.Rows.Count; i++)
             {
                 string vOrdenCorte = datos.Rows[i]["c_codigo_oct"].ToString();
@@ -946,13 +958,13 @@ namespace Acopio
 
                 vn_porcentajeCal = vn_porcentaje32 + vn_porcentaje36 + vn_porcentaje40 + vn_porcentaje48 + vn_porcentaje60 + vn_porcentaje70 + vn_porcentaje84 + vn_porcentaje96;
 
-                vPorcObtenido = Convert.ToString(1 - (vn_porcentajeCal/100));
-                
+                vPorcObtenido = Convert.ToString(1 - (vn_porcentajeCal / 100));
+
                 string v300 = string.Empty;
                 string v360 = string.Empty;
                 string v380 = string.Empty;
                 string v500 = string.Empty;
-                
+
                 if (ComprobarVolumen(vOrdenCorte))
                 {
                     if (ComprobarCalidad(vOrdenCorte))
@@ -968,7 +980,7 @@ namespace Acopio
                         {
                             if (vn_porcentajeCal < 20)
                             {
-                                if (SumatoriaGrupo(datos,i))
+                                if (SumatoriaGrupo(datos, i))
                                 {
                                     vTotalObtenido = Convert.ToString((vn_bono_completo * vn_porcentajeGrupo) * (100 - (vn_porcentajeCal * 4)) / 100);
                                 }
@@ -1038,11 +1050,12 @@ namespace Acopio
                  Validad si alcanzo el porcentaje minimo por calibres
                  Validar si alcanzo la sumatoria del grupo por calibres
                  */
-
+                TotalCalibres += Convert.ToDecimal(vTotalObtenido);
                 CreatNewRowCalibres(vOrdenCorte, vHuerta, vnEst32, vnEst36, vnEst40, vnEst48, vnEst60, vnEst70, vnEst84, vnEst96,
                                                       vnPro32, vnPro36, vnPro40, vnPro48, vnPro60, vnPro70, vnPro84, vnPro96,
                                                       vPorcObtenido, vTotalBono, v300, v360, v380, v500, vTotalObtenido);
             }
+            txtTotalCalibres.Text = TotalCalibres.ToString();
         }
 
         private bool SumatoriaGrupo(DataTable datos, int Fila)
@@ -1081,7 +1094,7 @@ namespace Acopio
             {
                 SumaCalibres += Convert.ToDecimal(datos.Rows[Fila]["Pro96"]);
             }
-            if(PorcentajeSumGrupoCalibre>SumaCalibres)
+            if (PorcentajeSumGrupoCalibre > SumaCalibres)
             {
                 Valor = false;
             }
@@ -1112,7 +1125,7 @@ namespace Acopio
             for (int i = 0; i < dtgValCalidad.RowCount; i++)
             {
                 xRow = dtgValCalidad.GetVisibleRowHandle(i);
-                if (dtgValCalidad.GetRowCellValue(xRow, "Column13")== vOrdenCorte)
+                if (dtgValCalidad.GetRowCellValue(xRow, "Column13") == vOrdenCorte)
                 {
                     if (Convert.ToDecimal(dtgValCalidad.GetRowCellValue(xRow, "Column12")) == 0)
                     {
@@ -1124,7 +1137,7 @@ namespace Acopio
             return Valor;
         }
 
-        
+
         private void LlenarPorcentajeCalibres(string vc_codigo_eta)
         {
             CLS_Criterios gst = new CLS_Criterios();
@@ -1186,7 +1199,7 @@ namespace Acopio
             }
         }
         private void CreatNewRowCalibres(string OrdenCorte, string Huerta, string Est32, string Est36, string Est40, string Est48, string Est60, string Est70, string Est84, string Est96,
-                                        string Pro32, string Pro36, string Pro40, string Pro48, string Pro60, string Pro70, string Pro84, string Pro96, 
+                                        string Pro32, string Pro36, string Pro40, string Pro48, string Pro60, string Pro70, string Pro84, string Pro96,
                                         object PorcObtenido, object TotalBono, object C300, object C360, object C380, object C500, string TotalObtenido)
         {
             dtgValCalibres.AddNewRow();
@@ -1263,6 +1276,7 @@ namespace Acopio
         }
         private void InsertarBonificacionCalidad(DataTable datos)
         {
+            decimal TotalCalidad = 0;
             for (int i = 0; i < datos.Rows.Count; i++)
             {
                 vn_porcentajeCat1 = 0;
@@ -1287,7 +1301,7 @@ namespace Acopio
                 {
                     if ((100 - (((Convert.ToDecimal(datos.Rows[i]["ProCat1"].ToString()) / Convert.ToDecimal(datos.Rows[i]["EstCat1"].ToString())) * 100))) * (Convert.ToDecimal(datos.Rows[i]["EstCat1"].ToString()) / 100) > 0)
                     {
-                        vn_porcentajeCat1 = Math.Abs(100 - (((Convert.ToDecimal(datos.Rows[i]["ProCat1"].ToString()) / Convert.ToDecimal(datos.Rows[i]["EstCat1"].ToString())) * 100))) * (Convert.ToDecimal(datos.Rows[i]["EstCat1"].ToString()) / 100)/100;
+                        vn_porcentajeCat1 = Math.Abs(100 - (((Convert.ToDecimal(datos.Rows[i]["ProCat1"].ToString()) / Convert.ToDecimal(datos.Rows[i]["EstCat1"].ToString())) * 100))) * (Convert.ToDecimal(datos.Rows[i]["EstCat1"].ToString()) / 100) / 100;
                     }
                     else
                     {
@@ -1302,7 +1316,7 @@ namespace Acopio
                 {
                     if ((100 - (((Convert.ToDecimal(datos.Rows[i]["ProCat2"].ToString()) / Convert.ToDecimal(datos.Rows[i]["EstCat2"].ToString())) * 100))) * (Convert.ToDecimal(datos.Rows[i]["EstCat2"].ToString()) / 100) > 0)
                     {
-                        vn_porcentajeCat2 = Math.Abs(100 - (((Convert.ToDecimal(datos.Rows[i]["ProCat2"].ToString()) / Convert.ToDecimal(datos.Rows[i]["EstCat2"].ToString())) * 100))) * (Convert.ToDecimal(datos.Rows[i]["EstCat2"].ToString()) / 100)/100;
+                        vn_porcentajeCat2 = Math.Abs(100 - (((Convert.ToDecimal(datos.Rows[i]["ProCat2"].ToString()) / Convert.ToDecimal(datos.Rows[i]["EstCat2"].ToString())) * 100))) * (Convert.ToDecimal(datos.Rows[i]["EstCat2"].ToString()) / 100) / 100;
                     }
                     else
                     {
@@ -1317,7 +1331,7 @@ namespace Acopio
                 {
                     if ((100 - (((Convert.ToDecimal(datos.Rows[i]["ProNal"].ToString()) / Convert.ToDecimal(datos.Rows[i]["EstNal"].ToString())) * 100))) * (Convert.ToDecimal(datos.Rows[i]["EstNal"].ToString()) / 100) > 0)
                     {
-                        vn_porcentajeNal = Math.Abs(100 - (((Convert.ToDecimal(datos.Rows[i]["ProNal"].ToString()) / Convert.ToDecimal(datos.Rows[i]["EstNal"].ToString())) * 100))) * (Convert.ToDecimal(datos.Rows[i]["EstNal"].ToString()) / 100)/100;
+                        vn_porcentajeNal = Math.Abs(100 - (((Convert.ToDecimal(datos.Rows[i]["ProNal"].ToString()) / Convert.ToDecimal(datos.Rows[i]["EstNal"].ToString())) * 100))) * (Convert.ToDecimal(datos.Rows[i]["EstNal"].ToString()) / 100) / 100;
                     }
                     else
                     {
@@ -1396,9 +1410,11 @@ namespace Acopio
                         v500 = Convert.ToString((vn_bono_completo * vn_porcentajeGrupo) * (100 - (vn_porcentajeCat * 5)) / 100);
                         break;
                 }
-                vPorcObtenido = Convert.ToString(1-vn_porcentajeCat);
+                vPorcObtenido = Convert.ToString(1 - vn_porcentajeCat);
+                TotalCalidad += Convert.ToDecimal(vTotalObtenido);
                 CreatNewRowCalidad(vOrdenCorte, vHuerta, vEstCat1, vEstCat2, vEstNal, vProdCat1, vProdCat2, vProdNal, vPorcObtenido, vTotalBono, v300, v360, v380, v500, vTotalObtenido);
             }
+            txtTotalCalidad.Text = TotalCalidad.ToString();
         }
         private decimal CalculaPorcentaje()
         {
@@ -1463,12 +1479,13 @@ namespace Acopio
         {
             CargarPenalizacionVolumen(c_codigo_eta);
             CargarPenalizacionCamiones();
+            decimal TotalVolumen = 0;
             for (int i = 0; i < datos.Rows.Count; i++)
             {
                 string vOrdenCorte = datos.Rows[i]["c_codigo_oct"].ToString();
                 string vHuerta = datos.Rows[i]["Huerta"].ToString();
                 string vEstimado = datos.Rows[i]["n_cajas_pcd"].ToString();
-                string vRecibido =Convert.ToInt32(datos.Rows[i]["EstCajas"]).ToString();
+                string vRecibido = Convert.ToInt32(datos.Rows[i]["EstCajas"]).ToString();
                 decimal ProcRecibido = 0;
                 if ((Convert.ToDecimal(datos.Rows[i]["EstCajas"].ToString())) / Convert.ToDecimal(datos.Rows[i]["n_cajas_pcd"].ToString()) > 1)
                 {
@@ -1481,7 +1498,7 @@ namespace Acopio
                 string vPorcRecibido = ProcRecibido.ToString();
                 string vTotalBono = (MontoCompletoCamion(Convert.ToDecimal(datos.Rows[i]["n_cajas_pcd"].ToString())) * PorcentajeGrupo("01")).ToString();
                 string vTotalObtenido;
-                if (Convert.ToDecimal(vPorcRecibido) < (valPenalizacionVolumen) || Convert.ToDecimal(txtCamiones_CMP.Text)> CamionCMP || Convert.ToDecimal(txtCamionesMI.Text) > CamionMI)
+                if (Convert.ToDecimal(vPorcRecibido) < (valPenalizacionVolumen) || Convert.ToDecimal(txtCamiones_CMP.Text) > CamionCMP || Convert.ToDecimal(txtCamionesMI.Text) > CamionMI)
                 {
                     vTotalObtenido = "0";
                 }
@@ -1489,8 +1506,10 @@ namespace Acopio
                 {
                     vTotalObtenido = (ProcRecibido * Convert.ToDecimal(vTotalBono)).ToString();
                 }
+                TotalVolumen += Convert.ToDecimal(vTotalObtenido);
                 CreatNewRowVolumen(vOrdenCorte, vHuerta, vEstimado, vRecibido, vPorcRecibido, vTotalBono, vTotalObtenido);
             }
+            txtTotalVolumen.Text = TotalVolumen.ToString();
         }
         private void BuscarEtapaActiva()
         {
@@ -1540,7 +1559,7 @@ namespace Acopio
             {
                 if (selGrupo.Datos.Rows.Count > 0)
                 {
-                    CamionCMP =Convert.ToDecimal(selGrupo.Datos.Rows[0][1].ToString());
+                    CamionCMP = Convert.ToDecimal(selGrupo.Datos.Rows[0][1].ToString());
                     CamionMI = Convert.ToDecimal(selGrupo.Datos.Rows[0][2].ToString());
                 }
             }
@@ -1600,14 +1619,14 @@ namespace Acopio
             {
                 dtgValVolumen.SetRowCellValue(rowHandle, dtgValVolumen.Columns["Column6"], OrdenCorte);
                 dtgValVolumen.SetRowCellValue(rowHandle, dtgValVolumen.Columns["Column0"], Huerta);
-                dtgValVolumen.SetRowCellValue(rowHandle, dtgValVolumen.Columns["Column1"],Estimado);
-                dtgValVolumen.SetRowCellValue(rowHandle, dtgValVolumen.Columns["Column2"],Recibido);
+                dtgValVolumen.SetRowCellValue(rowHandle, dtgValVolumen.Columns["Column1"], Estimado);
+                dtgValVolumen.SetRowCellValue(rowHandle, dtgValVolumen.Columns["Column2"], Recibido);
                 dtgValVolumen.SetRowCellValue(rowHandle, dtgValVolumen.Columns["Column3"], PorcRecibido);
                 dtgValVolumen.SetRowCellValue(rowHandle, dtgValVolumen.Columns["Column4"], TotalBono);
                 dtgValVolumen.SetRowCellValue(rowHandle, dtgValVolumen.Columns["Column5"], TotalObtenido);
             }
         }
-        private void CreatNewRowCalidad(string OrdenCorte, string Huerta, string EstCat1, string EstCat2, string EstNal, string ProdCat1, string ProdCat2, string ProdNal, 
+        private void CreatNewRowCalidad(string OrdenCorte, string Huerta, string EstCat1, string EstCat2, string EstNal, string ProdCat1, string ProdCat2, string ProdNal,
                                         string PorcObtenido, string TotalBono, string C300, string C360, string C380, string C500, string TotalObtenido)
         {
             dtgValCalidad.AddNewRow();
@@ -1644,10 +1663,10 @@ namespace Acopio
             corteseln.MtdSeleccionarCancelMixtos();
             if (corteseln.Exito)
             {
-                if(corteseln.Datos.Rows.Count>0)
+                if (corteseln.Datos.Rows.Count > 0)
                 {
-                    txtCamiones_CMP.Text= corteseln.Datos.Rows[0][0].ToString();
-                    txtCamionesMI.Text= corteseln.Datos.Rows[0][1].ToString();
+                    txtCamiones_CMP.Text = corteseln.Datos.Rows[0][0].ToString();
+                    txtCamionesMI.Text = corteseln.Datos.Rows[0][1].ToString();
                 }
                 else
                 {
@@ -1681,6 +1700,63 @@ namespace Acopio
             Frm_BonosAcopio frmb = new Frm_BonosAcopio();
             frmb.IsModal = true;
             frmb.Show();
+        }
+
+        private void dtgVolumen_Click(object sender, EventArgs e)
+        {
+            foreach (int i in this.dtgValVolumen.GetSelectedRows())
+            {
+                DataRow row = dtgValVolumen.GetDataRow(i);
+                txtOrdenCorteSel.Text = row["Column6"].ToString();
+                dtgValCalidad.OptionsSelection.MultiSelect = false;
+                dtgValCalidad.ClearSelection();
+                dtgValCalidad.FocusedRowHandle = i;
+                dtgValCalidad.OptionsSelection.MultiSelect = true;
+                dtgValCalidad.SelectRow(i);
+                dtgValCalibres.OptionsSelection.MultiSelect = false;
+                dtgValCalibres.ClearSelection();
+                dtgValCalibres.FocusedRowHandle = i;
+                dtgValCalibres.OptionsSelection.MultiSelect = true;
+                dtgValCalibres.SelectRow(i);
+            }
+        }
+
+        private void dtgCalidad_Click(object sender, EventArgs e)
+        {
+            foreach (int i in this.dtgValCalidad.GetSelectedRows())
+            {
+                DataRow row = dtgValCalidad.GetDataRow(i);
+                txtOrdenCorteSel.Text = row["Column13"].ToString();
+                dtgValVolumen.OptionsSelection.MultiSelect = false;
+                dtgValVolumen.ClearSelection();
+                dtgValVolumen.FocusedRowHandle = i;
+                dtgValVolumen.OptionsSelection.MultiSelect = true;
+                dtgValVolumen.SelectRow(i);
+                dtgValCalibres.OptionsSelection.MultiSelect = false;
+                dtgValCalibres.ClearSelection();
+                dtgValCalibres.FocusedRowHandle = i;
+                dtgValCalibres.OptionsSelection.MultiSelect = true;
+                dtgValCalibres.SelectRow(i);
+            }
+        }
+
+        private void dtgCalibres_Click(object sender, EventArgs e)
+        {
+            foreach (int i in this.dtgValCalibres.GetSelectedRows())
+            {
+                DataRow row = dtgValCalibres.GetDataRow(i);
+                txtOrdenCorteSel.Text = row["Column23"].ToString();
+                dtgValVolumen.OptionsSelection.MultiSelect = false;
+                dtgValVolumen.ClearSelection();
+                dtgValVolumen.FocusedRowHandle = i;
+                dtgValVolumen.OptionsSelection.MultiSelect = true;
+                dtgValVolumen.SelectRow(i);
+                dtgValCalidad.OptionsSelection.MultiSelect = false;
+                dtgValCalidad.ClearSelection();
+                dtgValCalidad.FocusedRowHandle = i;
+                dtgValCalidad.OptionsSelection.MultiSelect = true;
+                dtgValCalidad.SelectRow(i);
+            }
         }
     }
 }
