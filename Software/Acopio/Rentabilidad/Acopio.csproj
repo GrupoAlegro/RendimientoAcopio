@@ -100,7 +100,7 @@
     </Reference>
     <Reference Include="FlashControlV71, Version=1.0.3187.32366, Culture=neutral, PublicKeyToken=692fbea5521e1304" />
     <Reference Include="itextsharp">
-      <HintPath>..\..\..\..\Aplicacion\Software\AgroTrace\AvoTrace\AvoTrace\bin\Debug\itextsharp.dll</HintPath>
+      <HintPath>bin\Debug\itextsharp.dll</HintPath>
     </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="System">

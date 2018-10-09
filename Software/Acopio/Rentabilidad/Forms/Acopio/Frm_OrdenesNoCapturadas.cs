@@ -11,7 +11,7 @@ using DevExpress.XtraEditors;
 using CrystalDecisions.Shared;
 using CrystalDecisions.CrystalReports.Engine;
 
-namespace Acopio.Forms.Acopio
+namespace Acopio
 {
     public partial class Frm_OrdenesNoCapturadas : DevExpress.XtraEditors.XtraForm
     {

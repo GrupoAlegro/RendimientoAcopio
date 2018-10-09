@@ -20,7 +20,7 @@ namespace Acopio
 
             BonusSkins.Register();
             SkinManager.EnableFormSkins();
-            Application.Run(new Frm_GenBonos());
+            Application.Run(new Frm_RPT_Acopiadores());
         }
     }
 }

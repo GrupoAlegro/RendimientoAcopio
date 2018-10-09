@@ -1,4 +1,4 @@
-﻿namespace Acopio.Forms.Acopio
+﻿namespace Acopio
 {
     partial class Frm_OrdenesNoCapturadas
     {

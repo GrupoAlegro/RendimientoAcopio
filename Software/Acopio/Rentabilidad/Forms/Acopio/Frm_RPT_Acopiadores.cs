@@ -50,222 +50,6 @@ namespace Acopio
         public string Acopiador { get;  set; }
         public string FechaInicio { get;  set; }
         public string FechaFin { get;  set; }
-
-        private void CargarAcopiadores(int? Valor)
-        {
-            CLS_Acopio bAcpopiadores = new CLS_Acopio();
-            bAcpopiadores.MtdSeleccionarAcopiadores();
-            if (bAcpopiadores.Exito)
-            {
-                CargarCombo(bAcpopiadores.Datos, Valor);
-            }
-        }
-        private void CargarCombo(DataTable Datos, int? Valor)
-        {
-            lkUpAcopiador.Properties.DisplayMember = "c_acopiador_Cal";
-            lkUpAcopiador.Properties.ValueMember = "c_codigo_zon";
-            lkUpAcopiador.EditValue = Valor;
-            lkUpAcopiador.Properties.DataSource = Datos;
-        }
-
-        private void Frm_RPT_Acopiadores_Shown(object sender, EventArgs e)
-        {
-            CargarAcopiadores(null);
-            dtInicio.EditValue = DateTime.Now;
-            dtFin.EditValue = DateTime.Now;
-            ProgressB.EditValue = 0;
-        }
-
-        private void btnConsultar_Click(object sender, EventArgs e)
-        {
-            hyperlinkLabelControl1.Visible = false;
-            if (ValidaDatos())
-            {
-                ConsultaNoCaturados();
-                CLS_Acopio cortesel = new CLS_Acopio();
-                if (lkUpAcopiador.EditValue == null)
-                {
-                    Acopiador = string.Empty;
-                }
-                else
-                {
-                    Acopiador = lkUpAcopiador.Text;
-                }
-                FechaInicio = dtInicio.DateTime.Year + DosCeros1(dtInicio.DateTime.Month.ToString()) + DosCeros1(dtInicio.DateTime.Day.ToString());
-                FechaFin = dtFin.DateTime.Year + DosCeros1(dtFin.DateTime.Month.ToString()) + DosCeros1(dtFin.DateTime.Day.ToString());
-                cortesel.Acopiador = Acopiador;
-                cortesel.FechaInicio = FechaInicio;
-                cortesel.FechaFin = FechaFin;
-                cortesel.MtdSeleccionarCortesAcopiadores();
-                if (cortesel.Exito)
-                {
-                    if (cortesel.Datos.Rows.Count > 0)
-                    {
-                        BorrarBonificaciones();
-                        ProgressB.Position = 0;
-                        Application.DoEvents();
-                        InsertarBonificacionVolumen(cortesel.Datos);
-                        ProgressB.Position = 30;
-                        Application.DoEvents();
-                        InsertarBonificacionCalidad(cortesel.Datos);
-                        ProgressB.Position = 60;
-                        Application.DoEvents();
-                        InsertarBonificacionCalibre(cortesel.Datos);
-                        ProgressB.Position = 100;
-                        Application.DoEvents();
-                        MostrarReporte();
-                    }
-                    else
-                    {
-                        XtraMessageBox.Show("No existen datos para mostrar");
-                    }
-                }
-            }
-            else
-            {
-                XtraMessageBox.Show("Seleccione un Acopiador");
-            }
-        }
-
-        private void ConsultaNoCaturados()
-        {
-            CLS_Acopio corteseln = new CLS_Acopio();
-            FechaInicio = dtInicio.DateTime.Year + DosCeros1(dtInicio.DateTime.Month.ToString()) + DosCeros1(dtInicio.DateTime.Day.ToString());
-            FechaFin = dtFin.DateTime.Year + DosCeros1(dtFin.DateTime.Month.ToString()) + DosCeros1(dtFin.DateTime.Day.ToString());
-            corteseln.FechaInicio = FechaInicio;
-            corteseln.FechaFin = FechaFin;
-            corteseln.MtdSeleccionarCapturasPendientes();
-            if (corteseln.Exito)
-            {
-                if (corteseln.Datos.Rows.Count > 0)
-                {
-                    hyperlinkLabelControl1.Visible = true;
-                }
-            }
-
-        }
-
-        private void MostrarReporte()
-        {
-            if (orbTipoReporte.SelectedIndex==1)
-            {
-                Parametros_basededatos();
-                Reports.rpt_Bonificacion_Acopiadores_Detallado RCatalogoP = new Reports.rpt_Bonificacion_Acopiadores_Detallado();
-                Tables RPTTablas = RCatalogoP.Database.Tables;
-
-                foreach (Table oTabla in RPTTablas)
-                {
-                    TableLogOnInfo oTablaConexInfo = oTabla.LogOnInfo;
-                    oTablaConexInfo.ConnectionInfo = oConexInfo;
-                    oTabla.ApplyLogOnInfo(oTablaConexInfo);
-                }
-                RCatalogoP.Refresh();
-                FechaInicio = string.Format("{0}/{1}/{2}", DosCeros1(dtInicio.DateTime.Day.ToString()), DosCeros1(dtInicio.DateTime.Month.ToString()), dtInicio.DateTime.Year);
-                FechaFin = string.Format("{0}/{1}/{2}", DosCeros1(dtFin.DateTime.Day.ToString()), DosCeros1(dtFin.DateTime.Month.ToString()), dtFin.DateTime.Year);
-                RCatalogoP.DataDefinition.FormulaFields["Fecha_Inicio"].Text = string.Format("'{0}'", FechaInicio);
-                RCatalogoP.DataDefinition.FormulaFields["Fecha_Fin"].Text = string.Format("'{0}'", FechaFin);
-                RPT_Viewer.ReportSource = RCatalogoP;
-            }
-            else if (orbTipoReporte.SelectedIndex == 0)
-            {
-                Parametros_basededatos();
-                Reports.rpt_Bonificacion_Acopiadores_Concentrado RCatalogoP = new Reports.rpt_Bonificacion_Acopiadores_Concentrado();
-                Tables RPTTablas = RCatalogoP.Database.Tables;
-
-                foreach (Table oTabla in RPTTablas)
-                {
-                    TableLogOnInfo oTablaConexInfo = oTabla.LogOnInfo;
-                    oTablaConexInfo.ConnectionInfo = oConexInfo;
-                    oTabla.ApplyLogOnInfo(oTablaConexInfo);
-                }
-                RCatalogoP.Refresh();
-                FechaInicio = string.Format("{0}/{1}/{2}", DosCeros1(dtInicio.DateTime.Day.ToString()), DosCeros1(dtInicio.DateTime.Month.ToString()), dtInicio.DateTime.Year);
-                FechaFin = string.Format("{0}/{1}/{2}", DosCeros1(dtFin.DateTime.Day.ToString()), DosCeros1(dtFin.DateTime.Month.ToString()), dtFin.DateTime.Year);
-                RCatalogoP.DataDefinition.FormulaFields["Fecha_Inicio"].Text = string.Format("'{0}'", FechaInicio);
-                RCatalogoP.DataDefinition.FormulaFields["Fecha_Fin"].Text = string.Format("'{0}'", FechaFin);
-                RPT_Viewer.ReportSource = RCatalogoP;
-            }
-            else if(orbTipoReporte.SelectedIndex == 2)
-            {
-                ConsultaNoCaturados();
-                Parametros_basededatos();
-                Reports.rpt_Bonificacion_NoCapturados RCatalogoP = new Reports.rpt_Bonificacion_NoCapturados();
-                Tables RPTTablas = RCatalogoP.Database.Tables;
-
-                foreach (Table oTabla in RPTTablas)
-                {
-                    TableLogOnInfo oTablaConexInfo = oTabla.LogOnInfo;
-                    oTablaConexInfo.ConnectionInfo = oConexInfo;
-                    oTabla.ApplyLogOnInfo(oTablaConexInfo);
-                }
-                RCatalogoP.Refresh();
-                FechaInicio = string.Format("{0}/{1}/{2}", DosCeros1(dtInicio.DateTime.Day.ToString()), DosCeros1(dtInicio.DateTime.Month.ToString()), dtInicio.DateTime.Year);
-                FechaFin = string.Format("{0}/{1}/{2}", DosCeros1(dtFin.DateTime.Day.ToString()), DosCeros1(dtFin.DateTime.Month.ToString()), dtFin.DateTime.Year);
-                RCatalogoP.DataDefinition.FormulaFields["Fecha_Inicio"].Text = string.Format("'{0}'", FechaInicio);
-                RCatalogoP.DataDefinition.FormulaFields["Fecha_Fin"].Text = string.Format("'{0}'", FechaFin);
-                RPT_Viewer.ReportSource = RCatalogoP;
-            }
-            else if (orbTipoReporte.SelectedIndex == 3)
-            {
-                ConsultaNoCaturados();
-                Parametros_basededatos();
-                Reports.rpt_Bonificacion_OCanceladas RCatalogoP = new Reports.rpt_Bonificacion_OCanceladas();
-                Tables RPTTablas = RCatalogoP.Database.Tables;
-
-                foreach (Table oTabla in RPTTablas)
-                {
-                    TableLogOnInfo oTablaConexInfo = oTabla.LogOnInfo;
-                    oTablaConexInfo.ConnectionInfo = oConexInfo;
-                    oTabla.ApplyLogOnInfo(oTablaConexInfo);
-                }
-                RCatalogoP.Refresh();
-                FechaInicio = string.Format("{0}/{1}/{2}", DosCeros1(dtInicio.DateTime.Day.ToString()), DosCeros1(dtInicio.DateTime.Month.ToString()), dtInicio.DateTime.Year);
-                FechaFin = string.Format("{0}/{1}/{2}", DosCeros1(dtFin.DateTime.Day.ToString()), DosCeros1(dtFin.DateTime.Month.ToString()), dtFin.DateTime.Year);
-                RCatalogoP.DataDefinition.FormulaFields["Fecha_Inicio"].Text = string.Format("'{0}'", FechaInicio);
-                RCatalogoP.DataDefinition.FormulaFields["Fecha_Fin"].Text = string.Format("'{0}'", FechaFin);
-                FechaInicio = dtInicio.DateTime.Year + DosCeros1(dtInicio.DateTime.Month.ToString()) + DosCeros1(dtInicio.DateTime.Day.ToString());
-                FechaFin = dtFin.DateTime.Year + DosCeros1(dtFin.DateTime.Month.ToString()) + DosCeros1(dtFin.DateTime.Day.ToString());
-                RCatalogoP.SetParameterValue("@FechaInicio", FechaInicio);
-                RCatalogoP.SetParameterValue("@FechaFin", FechaFin);
-                RPT_Viewer.ReportSource = RCatalogoP;
-            }
-        }
-
-        private bool ValidaDatos()
-        {
-            bool Valor = true;
-            if (chkTodos.Checked == false)
-            {
-                if (lkUpAcopiador.EditValue != null)
-                {
-                    Valor = true;
-                }
-                else
-                {
-                    Valor = false;
-                }
-            }
-            else
-            {
-                Valor = true;
-            }
-            return Valor;
-        }
-        private void Parametros_basededatos()
-        {
-            MSRegistro RegOut = new MSRegistro();
-            Crypto DesencriptarTexto = new Crypto();
-            string ValServer = DesencriptarTexto.Desencriptar(RegOut.GetSetting("ConexionSQL", "Server"));
-            string ValDB = DesencriptarTexto.Desencriptar(RegOut.GetSetting("ConexionSQL", "DBase"));
-            string ValLogin = DesencriptarTexto.Desencriptar(RegOut.GetSetting("ConexionSQL", "User"));
-            string ValPass = DesencriptarTexto.Desencriptar(RegOut.GetSetting("ConexionSQL", "Password"));
-
-            oConexInfo.ServerName = ValServer;
-            oConexInfo.DatabaseName = ValDB;
-            oConexInfo.UserID = ValLogin;
-            oConexInfo.Password = ValPass;
-        }
-
         private void InsertarBonificacionCalibre(DataTable datos)
         {
             string vOrdenCorte = string.Empty;
@@ -602,7 +386,6 @@ namespace Acopio
                 }
             }
         }
-
         private void InsertarBonificacionCalidad(DataTable datos)
         {
             string vOrdenCorte = string.Empty;
@@ -777,7 +560,6 @@ namespace Acopio
                 }
             }
         }
-
         private void InsertarBonificacionVolumen(DataTable datos)
         {
             string vOrdenCorte = string.Empty;
@@ -905,38 +687,6 @@ namespace Acopio
             }
         }
 
-        private void chkTodos_CheckedChanged(object sender, EventArgs e)
-        {
-            if(chkTodos.Checked==true)
-            {
-                lkUpAcopiador.EditValue = null;
-                lkUpAcopiador.Enabled = false;
-            }
-            else
-            {
-                lkUpAcopiador.Enabled = true;
-            }
-        }
-
-        private void hyperlinkLabelControl1_Click(object sender, EventArgs e)
-        {
-            Parametros_basededatos();
-            Reports.rpt_Bonificacion_NoCapturados RCatalogoP = new Reports.rpt_Bonificacion_NoCapturados();
-            Tables RPTTablas = RCatalogoP.Database.Tables;
-
-            foreach (Table oTabla in RPTTablas)
-            {
-                TableLogOnInfo oTablaConexInfo = oTabla.LogOnInfo;
-                oTablaConexInfo.ConnectionInfo = oConexInfo;
-                oTabla.ApplyLogOnInfo(oTablaConexInfo);
-            }
-            RCatalogoP.Refresh();
-            RCatalogoP.DataDefinition.FormulaFields["Fecha_Inicio"].Text = string.Format("'{0}'", dtInicio.EditValue);
-            RCatalogoP.DataDefinition.FormulaFields["Fecha_Fin"].Text = string.Format("'{0}'", dtFin.EditValue);
-            RPT_Viewer.ReportSource = RCatalogoP;
-        }
-
-
         private void Frm_RPT_Acopiadores_FormClosing(object sender, FormClosingEventArgs e)
         {
             DialogResult = XtraMessageBox.Show("¿Desea salir de la aplicación?", "Salir", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1);
@@ -975,22 +725,25 @@ namespace Acopio
 
         private void btnOrdenCancelada_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-
+            Frm_OrdenesCanceladas.DefInstance.MdiParent = this;
+            Frm_OrdenesCanceladas.DefInstance.Show();
         }
 
         private void btnOrdenNCapturada_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-
+            Frm_OrdenesNoCapturadas.DefInstance.MdiParent = this;
+            Frm_OrdenesNoCapturadas.DefInstance.Show();
         }
 
         private void btnCierres_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-
+            
         }
 
         private void btnGenBonos_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-
+            Frm_GenBonos.DefInstance.MdiParent = this;
+            Frm_GenBonos.DefInstance.Show();
         }
     }
 }

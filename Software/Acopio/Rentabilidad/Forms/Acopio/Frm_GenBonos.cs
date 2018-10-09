@@ -68,6 +68,16 @@ namespace Acopio
         public decimal vn_porcentaje70 { get; private set; }
         public decimal vn_porcentaje84 { get; private set; }
         public decimal vn_porcentaje96 { get; private set; }
+        public int xRow { get; private set; }
+        public decimal PorcentajeSumGrupoCalibre { get; private set; }
+        public int gruposum32 { get; private set; }
+        public int gruposum36 { get; private set; }
+        public int gruposum40 { get; private set; }
+        public int gruposum48 { get; private set; }
+        public int gruposum60 { get; private set; }
+        public int gruposum70 { get; private set; }
+        public int gruposum84 { get; private set; }
+        public int gruposum96 { get; private set; }
 
         public string DosCeros1(string sVal)
         {
@@ -775,6 +785,10 @@ namespace Acopio
 
         private void InsertarBonificacionCalibre(DataTable datos)
         {
+            LlenarPorcentajeCalibres(c_codigo_eta);
+            ConsultaParametrosPenalizacionCal(c_codigo_eta);
+            SumGrupoCalibres(c_codigo_eta);
+
             for (int i = 0; i < datos.Rows.Count; i++)
             {
                 string vOrdenCorte = datos.Rows[i]["c_codigo_oct"].ToString();
@@ -801,7 +815,6 @@ namespace Acopio
                 string vTotalObtenido = "0";
                 decimal ProcRecibido = 0;
                 string vPorcObtenido = string.Empty;
-                ConsultaParametrosPenalizacionCal(c_codigo_eta);
 
                 if (Convert.ToDecimal(datos.Rows[i]["Est32"].ToString()) > 0)
                 {
@@ -934,20 +947,66 @@ namespace Acopio
                 vn_porcentajeCal = vn_porcentaje32 + vn_porcentaje36 + vn_porcentaje40 + vn_porcentaje48 + vn_porcentaje60 + vn_porcentaje70 + vn_porcentaje84 + vn_porcentaje96;
 
                 vPorcObtenido = Convert.ToString(1 - (vn_porcentajeCal/100));
-                string vTotalBono = Convert.ToString(vn_bono_completo * vn_porcentajeGrupo * (100 - (0 )) / 100);
+                
                 string v300 = string.Empty;
                 string v360 = string.Empty;
                 string v380 = string.Empty;
                 string v500 = string.Empty;
-                if(vn_porcentajeCal>20)
+                
+                if (ComprobarVolumen(vOrdenCorte))
+                {
+                    if (ComprobarCalidad(vOrdenCorte))
+                    {
+                        if (Convert.ToDecimal(datos.Rows[i]["Pro32"].ToString()) / 100 > valPenalizacion32
+                         || Convert.ToDecimal(datos.Rows[i]["Pro36"].ToString()) / 100 > valPenalizacion36
+                         || Convert.ToDecimal(datos.Rows[i]["Pro40"].ToString()) / 100 > valPenalizacion40
+                         || Convert.ToDecimal(datos.Rows[i]["Pro48"].ToString()) / 100 > valPenalizacion48
+                         || Convert.ToDecimal(datos.Rows[i]["Pro60"].ToString()) / 100 > valPenalizacion60
+                         || Convert.ToDecimal(datos.Rows[i]["Pro70"].ToString()) / 100 > valPenalizacion70
+                         || Convert.ToDecimal(datos.Rows[i]["Pro84"].ToString()) / 100 > valPenalizacion84
+                         || Convert.ToDecimal(datos.Rows[i]["Pro96"].ToString()) / 100 > valPenalizacion96)
+                        {
+                            if (vn_porcentajeCal < 20)
+                            {
+                                if (SumatoriaGrupo(datos,i))
+                                {
+                                    vTotalObtenido = Convert.ToString((vn_bono_completo * vn_porcentajeGrupo) * (100 - (vn_porcentajeCal * 4)) / 100);
+                                }
+                                else
+                                {
+                                    vTotalObtenido = "0";
+                                }
+                            }
+                            else
+                            {
+                                vTotalObtenido = "0";
+                            }
+                        }
+                        else
+                        {
+                            vTotalObtenido = "0";
+                        }
+                    }
+                    else
+                    {
+                        vTotalObtenido = "0";
+                    }
+                }
+                else
+                {
+                    vTotalObtenido = "0";
+                }
+
+                if (vn_porcentajeCal > 20)
                 {
                     vn_porcentajeCal = 20;
                 }
+                string vTotalBono = Convert.ToString(vn_bono_completo * vn_porcentajeGrupo * (100 - (vn_porcentajeCal * 4)) / 100);
                 switch (datos.Rows[i]["n_cajas_pcd"].ToString())
                 {
                     case "300":
 
-                        v300 = Convert.ToString((vn_bono_completo * vn_porcentajeGrupo) * (100 - (vn_porcentajeCal )) / 100);
+                        v300 = Convert.ToString((vn_bono_completo * vn_porcentajeGrupo) * (100 - (vn_porcentajeCal * 4)) / 100);
                         v360 = "0";
                         v380 = "0";
                         v500 = "0";
@@ -955,21 +1014,21 @@ namespace Acopio
                         break;
                     case "360":
                         v300 = "0";
-                        v360 = Convert.ToString((vn_bono_completo * vn_porcentajeGrupo) * (100 - (vn_porcentajeCal )) / 100);
+                        v360 = Convert.ToString((vn_bono_completo * vn_porcentajeGrupo) * (100 - (vn_porcentajeCal * 4)) / 100);
                         v380 = "0";
                         v500 = "0";
                         break;
                     case "380":
                         v300 = "0";
                         v360 = "0";
-                        v380 = Convert.ToString((vn_bono_completo * vn_porcentajeGrupo) * (100 - (vn_porcentajeCal )) / 100);
+                        v380 = Convert.ToString((vn_bono_completo * vn_porcentajeGrupo) * (100 - (vn_porcentajeCal * 4)) / 100);
                         v500 = "0";
                         break;
                     case "500":
                         v300 = "0";
                         v360 = "0";
                         v380 = "0";
-                        v500 = Convert.ToString((vn_bono_completo * vn_porcentajeGrupo) * (100 - (vn_porcentajeCal )) / 100);
+                        v500 = Convert.ToString((vn_bono_completo * vn_porcentajeGrupo) * (100 - (vn_porcentajeCal * 4)) / 100);
                         break;
                 }
                 /*
@@ -986,6 +1045,146 @@ namespace Acopio
             }
         }
 
+        private bool SumatoriaGrupo(DataTable datos, int Fila)
+        {
+            Boolean Valor = true;
+            decimal SumaCalibres = 0;
+            if (gruposum32 == 1)
+            {
+                SumaCalibres += Convert.ToDecimal(datos.Rows[Fila]["Pro32"]);
+            }
+            if (gruposum36 == 1)
+            {
+                SumaCalibres += Convert.ToDecimal(datos.Rows[Fila]["Pro36"]);
+            }
+            if (gruposum40 == 1)
+            {
+                SumaCalibres += Convert.ToDecimal(datos.Rows[Fila]["Pro40"]);
+            }
+            if (gruposum48 == 1)
+            {
+                SumaCalibres += Convert.ToDecimal(datos.Rows[Fila]["Pro48"]);
+            }
+            if (gruposum60 == 1)
+            {
+                SumaCalibres += Convert.ToDecimal(datos.Rows[Fila]["Pro60"]);
+            }
+            if (gruposum70 == 1)
+            {
+                SumaCalibres += Convert.ToDecimal(datos.Rows[Fila]["Pro70"]);
+            }
+            if (gruposum84 == 1)
+            {
+                SumaCalibres += Convert.ToDecimal(datos.Rows[Fila]["Pro84"]);
+            }
+            if (gruposum96 == 1)
+            {
+                SumaCalibres += Convert.ToDecimal(datos.Rows[Fila]["Pro96"]);
+            }
+            if(PorcentajeSumGrupoCalibre>SumaCalibres)
+            {
+                Valor = false;
+            }
+            return Valor;
+        }
+
+        private bool ComprobarVolumen(string vOrdenCorte)
+        {
+            Boolean Valor = true;
+            for (int i = 0; i < dtgValVolumen.RowCount; i++)
+            {
+                xRow = dtgValVolumen.GetVisibleRowHandle(i);
+                if (dtgValVolumen.GetRowCellValue(xRow, "Column6") == vOrdenCorte)
+                {
+                    if (Convert.ToDecimal(dtgValVolumen.GetRowCellValue(xRow, "Column5")) == 0)
+                    {
+                        Valor = false;
+                    }
+                    break;
+                }
+            }
+            return Valor;
+        }
+
+        private bool ComprobarCalidad(string vOrdenCorte)
+        {
+            Boolean Valor = true;
+            for (int i = 0; i < dtgValCalidad.RowCount; i++)
+            {
+                xRow = dtgValCalidad.GetVisibleRowHandle(i);
+                if (dtgValCalidad.GetRowCellValue(xRow, "Column13")== vOrdenCorte)
+                {
+                    if (Convert.ToDecimal(dtgValCalidad.GetRowCellValue(xRow, "Column12")) == 0)
+                    {
+                        Valor = false;
+                    }
+                    break;
+                }
+            }
+            return Valor;
+        }
+
+        
+        private void LlenarPorcentajeCalibres(string vc_codigo_eta)
+        {
+            CLS_Criterios gst = new CLS_Criterios();
+            gst.c_codigo_eta = vc_codigo_eta;
+            gst.MtdSeleccionarPorcentajeCriterio();
+            if (gst.Exito)
+            {
+                if (gst.Datos.Rows.Count > 0)
+                {
+                    PorcentajeSumGrupoCalibre = Convert.ToDecimal(gst.Datos.Rows[0][0].ToString());
+                }
+                else
+                {
+                    PorcentajeSumGrupoCalibre = 0;
+                }
+            }
+        }
+        private void SumGrupoCalibres(string vc_codigo_eta)
+        {
+            CLS_Criterios gst = new CLS_Criterios();
+            gst.c_codigo_eta = vc_codigo_eta;
+            gst.MtdSeleccionarCriterio();
+            if (gst.Exito)
+            {
+                string vCodigo = string.Empty;
+                Boolean VAgrupar = false;
+                string vCalibres = string.Empty;
+
+                for (int x = 0; x < gst.Datos.Rows.Count; x++)
+                {
+                    switch (gst.Datos.Rows[x]["v_penalizacion_ccali"].ToString())
+                    {
+                        case "32":
+                            gruposum32 = Convert.ToInt32(gst.Datos.Rows[x]["b_criterio"]);
+                            break;
+                        case "36":
+                            gruposum36 = Convert.ToInt32(gst.Datos.Rows[x]["b_criterio"]);
+                            break;
+                        case "40":
+                            gruposum40 = Convert.ToInt32(gst.Datos.Rows[x]["b_criterio"]);
+                            break;
+                        case "48":
+                            gruposum48 = Convert.ToInt32(gst.Datos.Rows[x]["b_criterio"]);
+                            break;
+                        case "60":
+                            gruposum60 = Convert.ToInt32(gst.Datos.Rows[x]["b_criterio"]);
+                            break;
+                        case "70":
+                            gruposum70 = Convert.ToInt32(gst.Datos.Rows[x]["b_criterio"]);
+                            break;
+                        case "84":
+                            gruposum84 = Convert.ToInt32(gst.Datos.Rows[x]["b_criterio"]);
+                            break;
+                        case "96":
+                            gruposum96 = Convert.ToInt32(gst.Datos.Rows[x]["b_criterio"]);
+                            break;
+                    }
+                }
+            }
+        }
         private void CreatNewRowCalibres(string OrdenCorte, string Huerta, string Est32, string Est36, string Est40, string Est48, string Est60, string Est70, string Est84, string Est96,
                                         string Pro32, string Pro36, string Pro40, string Pro48, string Pro60, string Pro70, string Pro84, string Pro96, 
                                         object PorcObtenido, object TotalBono, object C300, object C360, object C380, object C500, string TotalObtenido)
